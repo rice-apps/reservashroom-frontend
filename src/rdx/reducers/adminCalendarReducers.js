@@ -16,7 +16,7 @@ const fakeReducer = (state={open:false}, action) => {
     }
 };
 
-const roomInput = (state={name:'', capacity: 0, maxdur: 0}, action) => {
+const roomInput = (state={name:'', capacity: -1, maxdur: -1, alcohol: -1, food: -1, weeks: -1, auto: false, recur: false, start: '', end: '', addRule: [] }, action) => {
     switch(action.type) {
         case "ROOM_NAME":
             return {...state, name:action.detail}
@@ -25,7 +25,25 @@ const roomInput = (state={name:'', capacity: 0, maxdur: 0}, action) => {
         case "ROOM_DUR":
             return {...state, maxdur:action.detail}
         case "ROOM_WEEKS":
-            return {...state, maxdur:action.detail}
+            return {...state, weeks:action.detail}
+        case "ROOM_ALC";
+            return {...state, alcohol:action.detail}
+        case "ROOM_FOOD":
+            return {...state, food:action.detail}
+        case "ROOM_AUTO":
+            return {...state, auto:action.detail}
+        case "ROOM_RECUR":
+            return {...state, recur:action.detail}
+
+        case "ROOM_START":
+            return {...state, start:action.detail}
+        case "ROOM_END":
+            return {...state, end:action.detail}
+
+        case "ROOM_RULE":
+            let rules = state.addRule;
+            rules.push(action.detail);
+            return {...state, addRule:rules}
         default:
             return state
     }

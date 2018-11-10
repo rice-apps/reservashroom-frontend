@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import store from "./rdx/index";
-
+import RoomInputForm from "./components/RoomInputForm";
 ////////////////////////////////////////////////////////////////////////////////
 class App extends Component {
 
@@ -18,7 +18,8 @@ class App extends Component {
   render() {
     return (
       <div>
-          Empty App
+          <RoomInputForm/>
+
       </div>
     );
   }
