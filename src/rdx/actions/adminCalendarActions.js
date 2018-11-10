@@ -21,6 +21,20 @@ export const roomDetails = (event) => {
             inputType = "ROOM_DUR";
         case "weeksInAdvanceInput":
             inputType = "ROOM_WEEKS";
+        case "allowsAlcoholInput":
+            inputType = "ROOM_ALC";
+        case "allowsFoodInput":
+            inputType = "ROOM_FOOD";
+        case "autoReserveInput":
+            inputType = "ROOM_AUTO";
+        case "allowRecurringInput":
+            inputType = "ROOM_RECUR";
+        case "startTimeInput":
+            inputType = "ROOM_START";
+        case "endTimeInput":
+            inputType = "ROOM_END";
+        case "rulesInput":
+            inputType = "ROOM_RULE";
 
     }
     return ({
