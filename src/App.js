@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 
 import store from "./rdx/index";
 
+import ThirtyMinInterval from './components/UserTimeTable/ThirtyMinInterval';
+
 ////////////////////////////////////////////////////////////////////////////////
 class App extends Component {
 
@@ -19,6 +21,7 @@ class App extends Component {
     return (
       <div>
           Empty App
+          <ThirtyMinInterval/>
       </div>
     );
   }
