@@ -16,8 +16,23 @@ const fakeReducer = (state={open:false}, action) => {
     }
 };
 
+const roomInput = (state={name:'', capacity: 0, maxdur: 0}, action) => {
+    switch(action.type) {
+        case "ROOM_NAME":
+            return {...state, name:action.detail}
+        case "ROOM_CAPACITY":
+            return {...state, capacity:action.detail}
+        case "ROOM_DUR":
+            return {...state, maxdur:action.detail}
+        case "ROOM_WEEKS":
+            return {...state, maxdur:action.detail}
+        default:
+            return state
+    }
+}
+
 // After creating a reducer, add it to the comma separated list below
 // This allows you to access all reducers in this file as one object in other files
 export default combineReducers({
-    fakeReducer,
+    fakeReducer, roomInput
 })

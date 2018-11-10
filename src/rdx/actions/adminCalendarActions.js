@@ -8,3 +8,24 @@ export const FAKE_set_start_time = (hour) => ({
     time: hour
 });
 
+export const roomDetails = (event) => {
+    // You could do computations here if needed
+    // Suppose time values were offset by 2 for some reason:
+    let inputType;
+    switch (event.target.name) {
+        case "roomNameInput":
+            inputType = "ROOM_NAME";
+        case "roomCapacityInput":
+            inputType = "ROOM_CAPACITY";
+        case "roomMaxDurationInput":
+            inputType = "ROOM_DUR";
+        case "weeksInAdvanceInput":
+            inputType = "ROOM_WEEKS";
+
+    }
+    return ({
+        type: inputType,
+        detail: event.target.value
+    })
+};
+
