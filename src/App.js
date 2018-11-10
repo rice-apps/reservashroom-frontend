@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 import store from "./rdx/index";
 
 import ThirtyMinInterval from './components/UserTimeTable/ThirtyMinInterval';
+import RoomInputForm from "./components/RoomInputForm";
 
-////////////////////////////////////////////////////////////////////////////////
 class App extends Component {
 
   constructor(state, props) {
@@ -20,18 +20,15 @@ class App extends Component {
   render() {
     return (
       <div>
-          Empty App
           <ThirtyMinInterval/>
+          <RoomInputForm/>
       </div>
     );
   }
 }
 
-////////////////////////////////////////////////////////////////////////////////
 const mapStateToProps = state => {
   return {
   };
 };
 export default App = connect(mapStateToProps)(App);
-
-////////////////////////////////////////////////////////////////////////////////
