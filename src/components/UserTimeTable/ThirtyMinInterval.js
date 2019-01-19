@@ -1,4 +1,7 @@
+// Minh & Allison
+
 import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
 
 export default class ThirtyMinInterval extends Component {
     render () {
@@ -6,16 +9,20 @@ export default class ThirtyMinInterval extends Component {
         const startTimes = Array.from(Array(48).keys())
         const endTimes = Array.from(Array(48).keys())
 
+
         return (
             startTimes.map((startTime, index,) => {
                 return (
-                    <div style = {{backgroundColor: '#7fbfbf', display: "flex", border: "solid 1px"}}>
-                        {indexToTime(endTimes[index])}
+                    <div>
+                        <div style = {{backgroundColor: '#7fbfbf', display: "flex", border: "solid 1px"}}>
+                            {indexToTime(endTimes[index])}
 
-
-
-
+                        </div>
+                        <Button variant="contained" color="primary">
+                            Hello World
+                        </Button>
                     </div>
+
                 )
             })
 
