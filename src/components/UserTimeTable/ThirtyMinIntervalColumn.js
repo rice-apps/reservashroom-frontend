@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-export default class ThirtyMinInterval extends Component {
+
+export default class ThirtyMinIntervalColumn extends Component {
     render () {
         const startTimes = Array.from(Array(48).keys())
         const endTimes = Array.from(Array(48).keys())
@@ -73,7 +74,7 @@ export default class ThirtyMinInterval extends Component {
                                     <Grid container item xs={12} >
                                         {/*<FormRow> {indexToTime(endTimes[index])}  </FormRow>*/}
                                        {indexToTime(endTimes[index])}
-                                       
+
                                     </Grid>
                                     {/*<Grid container item xs={12} spacing={24}>*/}
                                     {/*<FormRow />*/}

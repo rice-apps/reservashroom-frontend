@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import store from "./rdx/index";
 
-import ThirtyMinInterval from './components/UserTimeTable/ThirtyMinInterval';
+import ThirtyMinIntervalColumn from './components/UserTimeTable/ThirtyMinIntervalColumn';
 import RoomInputForm from "./components/RoomInputForm";
 
 class App extends Component {
@@ -20,7 +20,7 @@ class App extends Component {
   render() {
     return (
       <div>
-          <ThirtyMinInterval/>
+          <ThirtyMinIntervalColumn/>
           <RoomInputForm/>
       </div>
     );
