@@ -7,6 +7,7 @@ import store from "./rdx/index";
 
 import ThirtyMinIntervalColumn from './components/UserTimeTable/ThirtyMinIntervalColumn';
 import RoomInputForm from "./components/RoomInputForm";
+import DayOfTheWeekGrid from "./components/UserTimeTable/DayOfTheWeekGrid";
 
 class App extends Component {
 
@@ -21,6 +22,7 @@ class App extends Component {
     return (
       <div>
           <ThirtyMinIntervalColumn/>
+          <DayOfTheWeekGrid/>
           <RoomInputForm/>
       </div>
     );

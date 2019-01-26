@@ -1,9 +1,12 @@
 // Minh and Allison
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
-export default class DayOfTheWeekGrid extends Component {
+export default class CalenderColumn extends Component {
     render() {
-        const days = Array.of("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday");
         const styles = theme => ({
             root: {
                 flexGrow: 1,
@@ -15,14 +18,7 @@ export default class DayOfTheWeekGrid extends Component {
             },
         });
 
-        return (
-            days.map((day,) => {
-                return (
-                    <div>
-                    </div>
-                )
-            })
-        )
-    }
 
+
+    }
 }
