@@ -5,7 +5,8 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
-
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 
 export default class RoomInputForm extends Component {
@@ -20,11 +21,11 @@ export default class RoomInputForm extends Component {
             allowsAlcoholInput: 'No',
             allowsFoodInput: 'No',
             autoReserveInput: 'No',
-            allowRecurringInput: 'No',
             weeksInAdvanceInput: '',
             startTimeInput: '',
             endTimeInput: '',
             rules: '',
+            rooms: []
         };
     }
     handleChange = name => event => {
@@ -32,6 +33,28 @@ export default class RoomInputForm extends Component {
             [name]: event.target.value,
         });
     };
+
+    createRoom = () => {
+        var new_room = [
+            {
+                roomName: this.state.roomNameInput,
+                roomCapacity: this.state.roomCapacityInput,
+                roomMaxDuration: this.state.roomMaxDurationInput,
+                allowsAlcohol: this.state.allowsAlcoholInput,
+                allowsFood: this.state.allowsFoodInput,
+                autoReserve: this.state.autoReserveInput,
+                weeksInAdvance: this.state.weeksInAdvanceInput,
+                startTime: this.state.startTimeInput,
+                endTime: this.state.endTimeInput,
+            }
+        ];
+        var rooms = this.state.rooms;
+        rooms.push(new_room);
+        this.setState({
+            rooms: rooms
+        })
+
+    }
 
     render() {
         const options= [
@@ -43,11 +66,25 @@ export default class RoomInputForm extends Component {
                 value: 'False',
                 label: 'No',
             },
+            {
+                value: 'Null',
+                label: 'Does not apply'
+            }
+
+
         ];
+
+        const styles = theme => ({
+            fab: {
+                margin: theme.spacing.unit,
+            },
+
+        });
+
         const rules = ['roomNameInput', 'roomCapacityInput', 'roomMaxDurationInput', 'weeksInAdvanceInput', 'startTimeInput', 'endTimeInput' ];
         const titles = ['Name', 'Capacity', 'Maximum Duration', 'Weeks In Advance', 'When to start', 'When to end']
-        const rulesYN = ['allowsAlcoholInput', 'allowsFoodInput', 'autoReserveInput', 'allowRecurringInput']
-        const titlesYN = ['Alcohol?', 'Food?', 'Auto Reserve?', 'Recurring?']
+        const rulesYN = ['allowsAlcoholInput', 'allowsFoodInput', 'autoReserveInput']
+        const titlesYN = ['Alcohol?', 'Food?', 'Auto Reserve?']
         return (
 
             <form>
@@ -90,8 +127,20 @@ export default class RoomInputForm extends Component {
                                 ))}
                             </TextField>
                             <span style={{flex:8}}/>
+
+                            {this.state.rooms.map((room)=>{
+                                return (
+                                    <div>
+                                        {room.roomName}
+                                    </div>
+                                )
+                            })}
+
                         </div>
+
+
                     )
+
                 })}
 
 
@@ -113,7 +162,11 @@ export default class RoomInputForm extends Component {
                 </div>
 
 
-
+                <div>
+                    <Fab color="Azure" aria-label="Add" onClick={()=>this.createRoom()}>
+                        <AddIcon />
+                    </Fab>
+                </div>
             </div>
             </form>
         );
