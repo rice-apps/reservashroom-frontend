@@ -8,7 +8,7 @@ import store from "./rdx/index";
 import ThirtyMinIntervalColumn from './components/UserTimeTable/ThirtyMinIntervalColumn';
 import RoomInputForm from "./components/RoomInputForm";
 import DayOfTheWeekGrid from "./components/UserTimeTable/DayOfTheWeekGrid";
-
+import OutlinedInputAdornments from "./components/UserReservationPageInterface/UserReservationPageInterface"
 class App extends Component {
 
   constructor(state, props) {
@@ -21,6 +21,7 @@ class App extends Component {
   render() {
     return (
       <div>
+          <OutlinedInputAdornments/>
           <ThirtyMinIntervalColumn/>
           <DayOfTheWeekGrid/>
           <RoomInputForm/>
