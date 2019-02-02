@@ -5,22 +5,27 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import { unstable_Box as Box } from '@material-ui/core/Box';
+import { borders } from '@material-ui/system';
+import CalendarRow from './RowOfCalendar.js';
+
 
 export default class ThirtyMinIntervalColumn extends Component {
     render () {
         const startTimes = Array.from(Array(48).keys());
         const endTimes = Array.from(Array(48).keys());
-        const days = Array.of("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday");
-        const styles = theme => ({
-            root: {
-                flexGrow: 1,
-            },
-            paper: {
-                padding: theme.spacing.unit,
-                textAlign: 'center',
-                color: theme.palette.text.secondary,
-            },
-        });
+        const days = Array.of("Monday","Tuesday","Wednesday","Thursday",
+            "Friday","Saturday","Sunday");
+        // const styles = theme => ({
+        //     root: {
+        //         flexGrow: 1,
+        //     },
+        //     paper: {
+        //         padding: theme.spacing.unit,
+        //         textAlign: 'center',
+        //         color: theme.palette.text.secondary,
+        //     },
+        // });
         // function FormRow(props) {
         //     // const { classes } = props;
         //     return (
@@ -65,44 +70,51 @@ export default class ThirtyMinIntervalColumn extends Component {
         return (
 
             <div>
-                <div style = {{backgroundColor: '#7fbfbf', display: "flex", border: "solid 1px", height: 100, width: "100%"}}>
+                <div style = {{backgroundColor: '#7fbfbf', display: "flex", border: "solid 1px", height: 50, width: "100%",
+                textAlign: 'center'}}>
 
-                    <div >
-                        {/*<Grid container spacing={8}>*/}
+                        {/*<Grid container spacing={84}>*/}
                             <Grid container item xs={12} >
+                                <Grid item xs={1}>
+
+                                </Grid>
 
                                     {days.map((day,) => {
 
-                                        return (<Grid item xs={3}>
+                                        return (<Grid item xs={1}>
                                         {day}
 
                                         </Grid>
+
                                         )
                                     })
                                     }
+                            {/*</Grid>*/}
 
-
-                            </Grid>
-
-                        {/*</Grid>*/}
-                    </div>
+                        </Grid>
                 </div>
 
 
                 {startTimes.map((startTime, index,) => {
                     return (
                         <div>
-                            <div style = {{backgroundColor: '#7fbfbf', display: "flex", border: "solid 1px"}}>
-
+                            <div style = {{backgroundColor: '#7fbfbf', display: "flex", borderBottom: "solid 1px"}}>
                                 <div >
+
                                     <Grid container spacing={8}>
-                                        <Grid container item xs={12} >
+                                        <Grid container item xs={12}>
 
                                            {indexToTime(endTimes[index])}
 
-                                        </Grid>
+                                            <CalendarRow time={indexToTime(endTimes[index])}/>
 
+                                        </Grid>
                                     </Grid>
+
+                                    {/*<Box border={1}>*/}
+                                        {/*{indexToTime(endTimes[index])}*/}
+                                    {/*</Box>*/}
+
                                 </div>
                             </div>
                         </div>
