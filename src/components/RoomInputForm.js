@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
+import Icon from '@material-ui/core/Icon';
 
 
 export default class RoomInputForm extends Component {
@@ -164,7 +164,7 @@ export default class RoomInputForm extends Component {
 
                 <div>
                     <Fab color="Azure" aria-label="Add" onClick={()=>this.createRoom()}>
-                        <AddIcon />
+                        <Icon color="action">add_circle</Icon>
                     </Fab>
                 </div>
             </div>

@@ -12,23 +12,15 @@ export default class CalendarRow extends Component {
     render() {
         const days = Array.of("Monday", "Tuesday", "Wednesday", "Thursday",
             "Friday", "Saturday", "Sunday");
-
         return (
-            days.map((day,) => {
-                    return (
-                        <Grid container item xs={1} style={{borderRight:"solid 1px",
-                        borderLeft:"solid 1px"}}>
-                            <Grid>
-                                adfs
-                            </Grid>
-                        </Grid>
-                    )
-
-                })
+            <Grid container spacing={16} style={{marginLeft: 100}}>
+                {days.map(day => (
+                    <Grid item xs={1.4} style={{border:"solid 1px", fontSize: 6, backgroundColor: 'white',
+                        width: 100, height: 20, textAlign: 'center'}}>
+                        {day + " " + this.props.time}
+                    </Grid>
+                ))}
+            </Grid>
         )
-
-
-        // this.props.time
-
     }
 }

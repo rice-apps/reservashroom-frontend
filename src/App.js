@@ -23,7 +23,7 @@ class App extends Component {
       <div>
           <OutlinedInputAdornments/>
           <ThirtyMinIntervalColumn/>
-          <DayOfTheWeekGrid/>
+          {/*<DayOfTheWeekGrid/>*/}
           <RoomInputForm/>
       </div>
     );
