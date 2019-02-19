@@ -1,12 +1,7 @@
 // Minh & Allison
 import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import { unstable_Box as Box } from '@material-ui/core/Box';
-import { borders } from '@material-ui/system';
+import Tooltip from '@material-ui/core/Tooltip';
 
 export default class CalendarRow extends Component {
     render() {
@@ -15,10 +10,11 @@ export default class CalendarRow extends Component {
         return (
             <Grid container spacing={16} style={{marginLeft: 100}}>
                 {days.map(day => (
-                    <Grid item xs={1.4} style={{border:"solid 1px", fontSize: 6, backgroundColor: 'white',
-                        width: 100, height: 20, textAlign: 'center'}}>
-                        {day + " " + this.props.time}
-                    </Grid>
+                    <Tooltip title={day + " " + this.props.time}>
+                        <Grid item xs={1.4} style={{border:"solid 1px", fontSize: 6, backgroundColor: 'white',
+                            width: 100, height: 20, textAlign: 'center'}}>
+                        </Grid>
+                    </Tooltip>
                 ))}
             </Grid>
         )

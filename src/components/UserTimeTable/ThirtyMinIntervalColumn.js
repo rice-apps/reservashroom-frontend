@@ -12,7 +12,7 @@ export default class ThirtyMinIntervalColumn extends Component {
 
         return (
             <div style={{width: '75%', marginLeft: 50}}>
-                <div style = {{backgroundColor: '#7fbfbf', display: "flex", border: "solid 1px", height: 30, width: "100%",
+                <div style = {{backgroundColor: '#7fbfbf', display: "flex", border: "solid 1px", height: 30,
                     textAlign: 'center'}}>
                     <Grid container spacing={16} style={{marginLeft: 100}}>
                         {days.map(day => (
@@ -23,7 +23,7 @@ export default class ThirtyMinIntervalColumn extends Component {
                     </Grid>
                 </div>
 
-                <Grid container spacing={16} style={{flexGrow: 1, backgroundColor: '#9ad1d1', width: "100%"}}>
+                <Grid container spacing={16} style={{flexGrow: 1, backgroundColor: '#9ad1d1'}}>
                     <Grid item xs={12}>
                         {startTimes.map((startTime, index,) => {
                             return (
