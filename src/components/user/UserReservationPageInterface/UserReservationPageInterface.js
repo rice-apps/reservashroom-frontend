@@ -90,8 +90,8 @@ class OutlinedInputAdornments extends React.Component {
     };
 
     handleNumPeopleChange = event =>{
-       this.setState({numPeople: event.target.value});
-       console.log(event.target.value);
+        this.setState({numPeople: event.target.value});
+        console.log(event.target.value);
     };
 
     // handleChange = name => event => {
