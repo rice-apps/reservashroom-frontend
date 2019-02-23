@@ -9,13 +9,11 @@ export default class CalendarCol extends Component {
         return (
             <Grid container xs = {12} spacing={8} style={{marginLeft: 0}}>
                 {startTimes.map((startTime, index,) => (
-                    <Tooltip title={this.props.day + " " + indexToTime(startTimes[index])}>
 
-                        <Grid item xs={12} style={{border:"solid 1px", fontSize: 6, backgroundColor: 'white',
+                        <Grid item xs={12} style={{ fontSize: 14,
                             width: 100, height: 20, textAlign: 'center'}}>
-                            {/*{this.props.day}*/}
+                            {indexToTime(startTime)}
                         </Grid>
-                    </Tooltip>
                 ))}
             </Grid>
         )

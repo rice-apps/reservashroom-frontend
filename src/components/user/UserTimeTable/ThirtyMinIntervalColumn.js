@@ -1,8 +1,8 @@
 // Minh & Allison
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
-import CalendarRow from './RowOfCalendar.js';
 import CalendarCol from './ColumnOfCalendar.js';
+import CalendarColTime from './ColumnOfCalendarTimeLabel.js';
 
 export default class ThirtyMinIntervalColumn extends Component {
     render () {
@@ -12,42 +12,45 @@ export default class ThirtyMinIntervalColumn extends Component {
             "Friday","Saturday","Sunday");
 
         return (
-            <div style={{width: '75%', marginLeft: 50}}>
-                <div style = {{backgroundColor: '#7fbfbf', display: "flex", border: "solid 1px", height: 30,
+            <div style={{width: '80%', marginLeft: 50}}>
+                <div style = {{ display: "flex",  height: 30,
                     textAlign: 'center'}}>
-                    <Grid container spacing={16} style={{marginLeft: 100}}>
+
+                    <Grid container spacing={4} >
+                        <Grid item xs={1} style={{width: 75, backgroundColor: '#7fbfbf'} }>
+                            {/*INTENTIONALLY Empty for spacing */}
+                        </Grid>
+
                         {days.map(day => (
-                            <Grid item xs={1.4} style={{width: 100}}>
+                            <Grid item xs={1} style={{border: "solid 1px",width: 75, backgroundColor: '#7fbfbf'}}>
                                 {day}
                             </Grid>
                         ))}
                     </Grid>
                 </div>
 
-                {/*<Grid container spacing={16} style={{flexGrow: 1, backgroundColor: '#9ad1d1'}}>*/}
-                    {/*<Grid item xs={12}>*/}
-                        {/*{startTimes.map((startTime, index,) => {*/}
-                            {/*return (*/}
-                                {/*<div>*/}
-                                    {/*<div>{indexToTime(endTimes[index])}</div>*/}
-                                    {/*<CalendarRow time={indexToTime(endTimes[index])}/>*/}
-                                {/*</div>*/}
-                            {/*)*/}
-                        {/*})}*/}
-                    {/*</Grid>*/}
-                {/*</Grid>*/}
-                <Grid container spacing={16} style={{flexGrow: 1, backgroundColor: '#9ad1d1'}}>
-                    <Grid item xs={12}>
-                        {days.map((day) => {
-                            return (
-                                <div>
-                                    {/*<div>{indexToTime(endTimes[index])}</div>*/}
-                                    <CalendarCol day={day}/>
-                                    {/*time={indexToTime(endTimes[index])}*/}
-                                </div>
-                            )
-                        })}
+                <Grid container spacing={4}>
+                    {/*<Grid item xs = {12/7.0}>*/}
+
+
+                    <Grid item xs={1} style={{  backgroundColor: '#9ad1d1'}}>
+                        <div>
+                        {/*This is INTENIONALLY EMPTY to help with spacing */}
+                        <CalendarColTime/>
+                        </div>
                     </Grid>
+
+                    {days.map((day) => {
+                        return (
+                            <Grid item xs={1} style={{}}>
+                                <div>
+                                    <CalendarCol day={day}/>
+                                </div>
+                            </Grid>
+                        )
+                    })}
+
+                    {/*</Grid>*/}
                 </Grid>
             </div>
         )
