@@ -82,7 +82,7 @@ class OutlinedInputAdornments extends React.Component {
     };
 
     handleToggle = prop => event => {
-        this.setState({ [prop]: event.target.value });
+        this.setState({ [prop]: event.target.checked });
     };
 
     handleButtonClick = () =>{
