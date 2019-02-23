@@ -5,9 +5,8 @@ import { connect } from 'react-redux';
 
 import store from "./rdx/index";
 
-import ThirtyMinIntervalColumn from './components/UserTimeTable/ThirtyMinIntervalColumn';
-import RoomInputForm from "./components/RoomInputForm";
-import OutlinedInputAdornments from "./components/UserReservationPageInterface/UserReservationPageInterface"
+import Page from './components/Page';
+
 class App extends Component {
 
   constructor(state, props) {
@@ -19,11 +18,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-          <OutlinedInputAdornments/>
-          <ThirtyMinIntervalColumn/>
-          <RoomInputForm/>
-      </div>
+        <Page/>
     );
   }
 }

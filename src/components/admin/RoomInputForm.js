@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {roomDetails} from '../rdx/actions/adminCalendarActions';
+import {roomDetails} from '../../rdx/actions/adminCalendarActions';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
