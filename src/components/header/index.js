@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 
 // Style imports
 import Button from '@material-ui/core/Button';
+import styled from 'styled-components';
 
 const HeaderBox = styled.div`
   background-color: Aquamarine;
