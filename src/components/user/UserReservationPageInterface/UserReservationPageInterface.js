@@ -65,7 +65,7 @@ class OutlinedInputAdornments extends React.Component {
     state = {
         age: '',
         name: 'hai',
-        labelWidth: 0,
+        numPeople: 0,
         food: false,
         alcohol:false
     };
@@ -77,16 +77,21 @@ class OutlinedInputAdornments extends React.Component {
         this.forceUpdate();
     }
 
-    handleChange0 = event => {
+    handleRoomChoose = event => {
         this.setState({ [event.target.name]: event.target.value });
     };
 
-    handleChange2 = prop => event => {
+    handleToggle = prop => event => {
         this.setState({ [prop]: event.target.value });
     };
 
     handleButtonClick = () =>{
         console.log('Clicked');
+    };
+
+    handleNumPeopleChange = event =>{
+       this.setState({numPeople: event.target.value});
+       console.log(event.target.value);
     };
 
     // handleChange = name => event => {
@@ -106,7 +111,7 @@ class OutlinedInputAdornments extends React.Component {
                         <InputLabel>Which room</InputLabel>
                         <Select
                             value={this.state.age}
-                            onChange={this.handleChange0}
+                            onChange={this.handleRoomChoose}
                             inputProps={{
                                 name: 'Which room',
                                 id: 'age-simple',
@@ -122,11 +127,13 @@ class OutlinedInputAdornments extends React.Component {
                     </FormControl>
 
                     <TextField
-                        id="standard-helperText"
+                        id="numPeople"
                         label="Number of People"
                         className={classes.textField}
                         helperText= "Input the number of people who will attend your event"
-                        margin="normal"
+                        // margin="normal"
+                        onChange={this.handleNumPeopleChange}
+                        value = {this.state.numPeople}
                     />
 
                     <div>
@@ -135,7 +142,7 @@ class OutlinedInputAdornments extends React.Component {
                                 control={
                                     <Switch
                                         checked={this.state.alcohol}
-                                        onChange={this.handleChange2('alcohol')}
+                                        onChange={this.handleToggle('alcohol')}
                                         value={true}
                                     />
                                 }
@@ -146,7 +153,7 @@ class OutlinedInputAdornments extends React.Component {
                                 control={
                                     <Switch
                                         checked={this.state.food}
-                                        onChange={this.handleChange2('food')}
+                                        onChange={this.handleToggle('food')}
                                         value= {true}
                                         color="primary"
                                     />
