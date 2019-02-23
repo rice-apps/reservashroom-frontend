@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import CalendarRow from './RowOfCalendar.js';
+import CalendarCol from './ColumnOfCalendar.js';
 
 export default class ThirtyMinIntervalColumn extends Component {
     render () {
@@ -23,13 +24,26 @@ export default class ThirtyMinIntervalColumn extends Component {
                     </Grid>
                 </div>
 
+                {/*<Grid container spacing={16} style={{flexGrow: 1, backgroundColor: '#9ad1d1'}}>*/}
+                    {/*<Grid item xs={12}>*/}
+                        {/*{startTimes.map((startTime, index,) => {*/}
+                            {/*return (*/}
+                                {/*<div>*/}
+                                    {/*<div>{indexToTime(endTimes[index])}</div>*/}
+                                    {/*<CalendarRow time={indexToTime(endTimes[index])}/>*/}
+                                {/*</div>*/}
+                            {/*)*/}
+                        {/*})}*/}
+                    {/*</Grid>*/}
+                {/*</Grid>*/}
                 <Grid container spacing={16} style={{flexGrow: 1, backgroundColor: '#9ad1d1'}}>
                     <Grid item xs={12}>
-                        {startTimes.map((startTime, index,) => {
+                        {days.map((day) => {
                             return (
                                 <div>
-                                    <div>{indexToTime(endTimes[index])}</div>
-                                    <CalendarRow time={indexToTime(endTimes[index])}/>
+                                    {/*<div>{indexToTime(endTimes[index])}</div>*/}
+                                    <CalendarCol day={day}/>
+                                    {/*time={indexToTime(endTimes[index])}*/}
                                 </div>
                             )
                         })}
