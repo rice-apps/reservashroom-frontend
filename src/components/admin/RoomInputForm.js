@@ -35,7 +35,7 @@ export default class RoomInputForm extends Component {
     };
 
     createRoom = () => {
-        var new_room = [
+        var new_room =
             {
                 roomName: this.state.roomNameInput,
                 roomCapacity: this.state.roomCapacityInput,
@@ -46,8 +46,7 @@ export default class RoomInputForm extends Component {
                 weeksInAdvance: this.state.weeksInAdvanceInput,
                 startTime: this.state.startTimeInput,
                 endTime: this.state.endTimeInput,
-            }
-        ];
+            };
         var rooms = this.state.rooms;
         rooms.push(new_room);
         this.setState({
