@@ -99,15 +99,12 @@ export default class RoomInputForm extends Component {
                 {rulesYN.map((rule, index) => {
                     return (
                         <div style={{backgroundColor: 'Azure', paddingLeft: 5, display: 'flex', justifyContent: 'space-between'}}>
-
                             <TextField
                                 id="standard-select-currency"
                                 select
                                 label={titlesYN[index]}
                                 value={this.state[rule]}
                                 onChange={this.handleChange(rule)}
-
-
                                 margin="normal"
                             >
                                 {options.map(option => (
@@ -125,15 +122,9 @@ export default class RoomInputForm extends Component {
                                     </div>
                                 )
                             })}
-
                         </div>
-
-
                     )
-
                 })}
-
-
 
                 <div style={{backgroundColor: 'Azure', paddingLeft: 5, display: 'flex', justifyContent: 'space-between'}}>
 

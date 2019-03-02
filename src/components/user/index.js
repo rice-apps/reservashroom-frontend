@@ -13,7 +13,7 @@ class User extends Component {
             <div>
                 <Grid container spacing={4}>
                 <Grid item xs = {6}>
-                <OutlinedInputAdornments/>
+                <OutlinedInputAdornments rooms={this.props.rooms}/>
                 </Grid>
                 <Grid item xs = {6}>
                 <ThirtyMinIntervalColumn/>
