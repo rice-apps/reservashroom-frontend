@@ -57,8 +57,8 @@ class UserReservationPageInterface extends React.Component {
         numPeople: 0,
         food: false,
         alcohol:false,
-        startTime:'06:00',
-        endTime:'16:00'
+        startTime:"06:00",
+        endTime: "16:00"
     };
 
     componentDidMount() {

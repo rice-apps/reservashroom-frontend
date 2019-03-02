@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Tooltip from '@material-ui/core/Tooltip';
 
-export default class CalendarCol extends Component {
+export default class CalendarColTime extends Component {
     render() {
         const startTimes = Array.from(Array(48).keys());
         return (

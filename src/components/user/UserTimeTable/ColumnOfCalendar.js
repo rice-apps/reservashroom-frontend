@@ -10,9 +10,13 @@ export default class CalendarCol extends Component {
         const startTimes = Array.from(Array(48).keys());
         return (
             <Grid container xs = {12} spacing={4} style={{marginLeft: 0}}>
+
                 {startTimes.map((startTime, index,) => {
-                    var start = timeToIndex(this.props.startTime);
-                    var end = timeToIndex(this.props.endTime);
+                    // console.log(this.props.startTime);
+                    // console.log(this.props.endTime);
+                    var [start, end] = timeToIndex(this.props.startTime, this.props.endTime);
+                    console.log(start);
+                    console.log(end);
 
                     if (startTime >= start && startTime <= end) {
                         this.color = 'blue';
@@ -50,10 +54,11 @@ function indexToTime(index) {
 }
 
 function timeToIndex(startTimeStr, endTimeStr) {
-    var startTimeInt = startTimeStr.split(':');
+    console.log(endTimeStr);
+    var startTimeInt = String(startTimeStr).split(":");
     var startHour = startTimeInt[0];
     var startMin = startTimeInt[1];
-    var endTimeInt = endTimeStr.split(':');
+    var endTimeInt = String(endTimeStr).split(':');
     var endHour = endTimeInt[0];
     var endMin = endTimeInt[1];
     var startIndex = (startHour * 2) + (startMin / 30);
