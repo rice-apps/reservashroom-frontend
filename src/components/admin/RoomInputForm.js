@@ -20,7 +20,6 @@ export default class RoomInputForm extends Component {
             startTimeInput: '',
             endTimeInput: '',
             rules: '',
-            rooms: []
         };
     }
     handleChange = name => event => {
@@ -42,12 +41,9 @@ export default class RoomInputForm extends Component {
                 startTime: this.state.startTimeInput,
                 endTime: this.state.endTimeInput,
             };
-        var rooms = this.state.rooms;
+        var rooms = this.props.rooms;
         rooms.push(new_room);
-        this.setState({
-            rooms: rooms
-        })
-
+        this.props.updateRooms(rooms);
     }
 
     render() {

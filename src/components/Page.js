@@ -19,6 +19,7 @@ class Page extends Component {
         super();
         this.state = {
             selected: '',
+            rooms: [],
         };
     }
 
@@ -26,12 +27,16 @@ class Page extends Component {
         console.log("SEL" + selection);
         switch(selection) {
             case 'user':
-                return <User/>;
+                return <User rooms={this.state.rooms} updateRooms={(rooms) => this.updateRooms(rooms)}/>;
             case 'admin':
-                return <Admin/>;
+                return <Admin rooms={this.state.rooms} updateRooms={(rooms) => this.updateRooms(rooms)}/>;
             default:
-                return <User/>;
+                return <User rooms={this.state.rooms} updateRooms={(rooms) => this.updateRooms(rooms)}/>;
         }
+    }
+
+    updateRooms(rooms) {
+        this.setState({rooms: rooms});
     }
 
     handleHeader(e, name) {

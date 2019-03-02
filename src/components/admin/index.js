@@ -8,7 +8,7 @@ class Admin extends Component {
     render() {
         return (
             <div>
-                <RoomInputForm/>
+                <RoomInputForm rooms={this.props.rooms} updateRooms={(rooms) => this.props.updateRooms(rooms)}/>
             </div>
         );
     }
