@@ -18,6 +18,8 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import ReactDOM from 'react-dom';
+import Grid from "@material-ui/core/Grid/Grid";
+import ThirtyMinIntervalColumn from "../UserTimeTable/ThirtyMinIntervalColumn";
 
 const styles = theme => ({
     root: {
@@ -55,7 +57,7 @@ class UserReservationPageInterface extends React.Component {
         numPeople: 0,
         food: false,
         alcohol:false,
-        startTime:'6:00',
+        startTime:'06:00',
         endTime:'16:00'
     };
 
@@ -97,115 +99,125 @@ class UserReservationPageInterface extends React.Component {
         const { classes } = this.props;
 
         return (
-            <form className={classes.root} noValidate autoComplete="off">
+            <div>
+                <Grid container spacing={4}>
+                    <Grid item xs = {6}>
 
-                <div>
-                    <FormControl className={classes.formControl}>
-                        <InputLabel>Which room</InputLabel>
-                        <Select
-                            value={this.state.room}
-                            onChange={this.handleRoomChoose}
-                            inputProps={{
-                                name: 'Which room',
-                                id: 'age-simple',
-                            }}
-                        >
-                            {ranges.map(option => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                        <FormHelperText>Select the room you want to reserve</FormHelperText>
-                    </FormControl>
+                        <form className={classes.root} noValidate autoComplete="off">
 
-                    <TextField
-                        id="numPeople"
-                        label="Number of People"
-                        className={classes.textField}
-                        helperText= "Input the number of people who will attend your event"
-                        // margin="normal"
-                        onChange={this.handleNumPeopleChange}
-                        value = {this.state.numPeople}
-                    />
+                            <div>
+                                <FormControl className={classes.formControl}>
+                                    <InputLabel>Which room</InputLabel>
+                                    <Select
+                                        value={this.state.room}
+                                        onChange={this.handleRoomChoose}
+                                        inputProps={{
+                                            name: 'Which room',
+                                            id: 'age-simple',
+                                        }}
+                                    >
+                                        {ranges.map(option => (
+                                            <MenuItem key={option.value} value={option.value}>
+                                                {option.label}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
+                                    <FormHelperText>Select the room you want to reserve</FormHelperText>
+                                </FormControl>
 
-
-                </div>
-                <div>
-                    <FormGroup>
-                        <FormControlLabel
-                            control={
-                                <Switch
-                                    checked={this.state.alcohol}
-                                    onChange={this.handleToggle('alcohol')}
-                                    value={true}
+                                <TextField
+                                    id="numPeople"
+                                    label="Number of People"
+                                    className={classes.textField}
+                                    helperText= "Input the number of people who will attend your event"
+                                    // margin="normal"
+                                    onChange={this.handleNumPeopleChange}
+                                    value = {this.state.numPeople}
                                 />
-                            }
-                            label="Alcohol"
-                        />
 
-                        <FormControlLabel
-                            control={
-                                <Switch
-                                    checked={this.state.food}
-                                    onChange={this.handleToggle('food')}
-                                    value= {true}
+
+                            </div>
+                            <div>
+                                <FormGroup>
+                                    <FormControlLabel
+                                        control={
+                                            <Switch
+                                                checked={this.state.alcohol}
+                                                onChange={this.handleToggle('alcohol')}
+                                                value={true}
+                                            />
+                                        }
+                                        label="Alcohol"
+                                    />
+
+                                    <FormControlLabel
+                                        control={
+                                            <Switch
+                                                checked={this.state.food}
+                                                onChange={this.handleToggle('food')}
+                                                value= {true}
+                                                color="primary"
+                                            />
+                                        }
+                                        label="Food"
+                                    />
+                                </FormGroup>
+                            </div>
+
+                            <div>
+                                <FormControl className={classes.formControl}>
+                                    {/*<form className={classes.formControl} noValidate>*/}
+                                    <TextField
+                                        id="time"
+                                        label="Start Time"
+                                        type="time"
+                                        value={this.state.startTime}
+                                        className={classes.name}
+                                        InputLabelProps={{
+                                            shrink: true,
+                                        }}
+                                        inputProps={{
+                                            step: 300, // 5 min
+                                        }}
+                                        onChange={this.handleTimeChange('startTime')}
+                                    />
+                                    {/*</form>*/}
+                                    {/*<form className={classes.formControl} noValidate>*/}
+                                </FormControl>
+                                <FormControl className={classes.formControl}>
+                                    <TextField
+                                        id="time"
+                                        label="Start Time"
+                                        type="time"
+                                        value={this.state.endTime}
+                                        className={classes.name}
+                                        InputLabelProps={{
+                                            shrink: true,
+                                        }}
+                                        inputProps={{
+                                            step: 300, // 5 min
+                                        }}
+
+                                        onChange={this.handleTimeChange('endTime')}
+                                    />
+                                    {/*</form>*/}
+                                </FormControl>
+                                <Button
+                                    variant="contained"
                                     color="primary"
-                                />
-                            }
-                            label="Food"
-                        />
-                    </FormGroup>
-                </div>
-
-                <div>
-                    <FormControl className={classes.formControl}>
-                        {/*<form className={classes.formControl} noValidate>*/}
-                        <TextField
-                            id="time"
-                            label="Start Time"
-                            type="time"
-                            value={this.state.startTime}
-                            className={classes.name}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            inputProps={{
-                                step: 300, // 5 min
-                            }}
-                            onChange={this.handleTimeChange('startTime')}
-                        />
-                        {/*</form>*/}
-                        {/*<form className={classes.formControl} noValidate>*/}
-                    </FormControl>
-                    <FormControl className={classes.formControl}>
-                        <TextField
-                            id="time"
-                            label="Start Time"
-                            type="time"
-                            value={this.state.endTime}
-                            className={classes.name}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            inputProps={{
-                                step: 300, // 5 min
-                            }}
-
-                            onChange={this.handleTimeChange('endTime')}
-                        />
-                        {/*</form>*/}
-                    </FormControl>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        className={classes.button}
-                        onClick = {this.handleButtonClick.bind(this)}
-                    >
-                        Reserve
-                    </Button>
-                </div>
-            </form>
+                                    className={classes.button}
+                                    onClick = {this.handleButtonClick.bind(this)}
+                                >
+                                    Reserve
+                                </Button>
+                            </div>
+                        </form>
+                    </Grid>
+                    <Grid item xs = {6}>
+                        <ThirtyMinIntervalColumn startTime ={this.state.startTime} endTime = {this.state.endTime} />
+                    </Grid>
+                </Grid>
+            </div>
         );
     }
 
