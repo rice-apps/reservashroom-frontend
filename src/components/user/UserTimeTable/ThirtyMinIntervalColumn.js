@@ -13,16 +13,18 @@ export default class ThirtyMinIntervalColumn extends Component {
 
         return (
             <div style={{width: '80%', marginLeft: 50}}>
-                <div style = {{ display: "flex",  height: 30,
+                <div style = {{ display: "flex",
                     textAlign: 'center'}}>
 
-                    <Grid container spacing={4} >
-                        <Grid item xs={1} style={{width: 75, backgroundColor: '#7fbfbf'} }>
+
+                    <Grid container spacing={4} style = {{height: 15}} >
+                        <Grid item xs={1} style={{width: 75,  backgroundColor: '#7fbfbf'} }>
                             {/*INTENTIONALLY Empty for spacing */}
                         </Grid>
 
                         {days.map(day => (
-                            <Grid item xs={1} style={{border: "solid 1px",width: 75, backgroundColor: '#7fbfbf'}}>
+                            <Grid item xs={1} style={{border: "solid 1px",width: 75,
+                                backgroundColor: '#7fbfbf', fontSize: 8}}>
                                 {day}
                             </Grid>
                         ))}

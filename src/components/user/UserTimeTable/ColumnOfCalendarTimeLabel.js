@@ -7,11 +7,11 @@ export default class CalendarCol extends Component {
     render() {
         const startTimes = Array.from(Array(48).keys());
         return (
-            <Grid container xs = {12} spacing={8} style={{marginLeft: 0}}>
+            <Grid container xs = {12} spacing={4} style={{marginLeft: 0}}>
                 {startTimes.map((startTime, index,) => (
 
-                        <Grid item xs={12} style={{ fontSize: 14,
-                            width: 100, height: 20, textAlign: 'center'}}>
+                        <Grid item xs={12} style={{ fontSize: 8, border: "solid 1px",
+                            width: 100, height: 15, textAlign: 'center'}}>
                             {indexToTime(startTime)}
                         </Grid>
                 ))}

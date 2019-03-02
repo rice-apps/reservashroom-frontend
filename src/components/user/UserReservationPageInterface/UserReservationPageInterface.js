@@ -136,32 +136,33 @@ class OutlinedInputAdornments extends React.Component {
                         value = {this.state.numPeople}
                     />
 
-                    <div>
-                        <FormGroup>
-                            <FormControlLabel
-                                control={
-                                    <Switch
-                                        checked={this.state.alcohol}
-                                        onChange={this.handleToggle('alcohol')}
-                                        value={true}
-                                    />
-                                }
-                                label="Alcohol"
-                            />
 
-                            <FormControlLabel
-                                control={
-                                    <Switch
-                                        checked={this.state.food}
-                                        onChange={this.handleToggle('food')}
-                                        value= {true}
-                                        color="primary"
-                                    />
-                                }
-                                label="Food"
-                            />
-                        </FormGroup>
-                    </div>
+                </div>
+                <div>
+                    <FormGroup>
+                        <FormControlLabel
+                            control={
+                                <Switch
+                                    checked={this.state.alcohol}
+                                    onChange={this.handleToggle('alcohol')}
+                                    value={true}
+                                />
+                            }
+                            label="Alcohol"
+                        />
+
+                        <FormControlLabel
+                            control={
+                                <Switch
+                                    checked={this.state.food}
+                                    onChange={this.handleToggle('food')}
+                                    value= {true}
+                                    color="primary"
+                                />
+                            }
+                            label="Food"
+                        />
+                    </FormGroup>
                 </div>
 
                 <div>
