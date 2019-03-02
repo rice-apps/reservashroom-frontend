@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import {roomDetails} from '../../rdx/actions/adminCalendarActions';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Fab from '@material-ui/core/Fab';
 import Icon from '@material-ui/core/Icon';
-
 
 export default class RoomInputForm extends Component {
 
@@ -35,7 +30,7 @@ export default class RoomInputForm extends Component {
     };
 
     createRoom = () => {
-        var new_room = [
+        var new_room =
             {
                 roomName: this.state.roomNameInput,
                 roomCapacity: this.state.roomCapacityInput,
@@ -46,8 +41,7 @@ export default class RoomInputForm extends Component {
                 weeksInAdvance: this.state.weeksInAdvanceInput,
                 startTime: this.state.startTimeInput,
                 endTime: this.state.endTimeInput,
-            }
-        ];
+            };
         var rooms = this.state.rooms;
         rooms.push(new_room);
         this.setState({
