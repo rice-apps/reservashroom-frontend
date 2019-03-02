@@ -115,7 +115,7 @@ export default class RoomInputForm extends Component {
                             </TextField>
                             <span style={{flex:8}}/>
 
-                            {this.state.rooms.map((room)=>{
+                            {this.props.rooms.map((room)=>{
                                 return (
                                     <div>
                                         {room.roomName}

@@ -205,8 +205,6 @@ class UserReservationPageInterface extends React.Component {
                         Reserve
                     </Button>
                 </div>
-                {/*</div>*/}
-
             </form>
         );
     }
