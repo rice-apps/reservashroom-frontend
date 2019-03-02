@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Tooltip from '@material-ui/core/Tooltip';
-// import UserReservationPageInterface from '../UserReservationPageInterface.js';
 
 
 export default class CalendarCol extends Component {
@@ -12,7 +11,10 @@ export default class CalendarCol extends Component {
         return (
             <Grid container xs = {12} spacing={4} style={{marginLeft: 0}}>
                 {startTimes.map((startTime, index,) => {
-                    if (index >= 3 && index <= 7) {
+                    var start = timeToIndex(this.props.startTime);
+                    var end = timeToIndex(this.props.endTime);
+
+                    if (startTime >= start && startTime <= end) {
                         this.color = 'blue';
                     } else {
                         this.color = 'white'
