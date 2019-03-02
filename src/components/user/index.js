@@ -11,14 +11,14 @@ class User extends Component {
     render() {
         return (
             <div>
-                <Grid container spacing={4}>
-                <Grid item xs = {6}>
+                {/*<Grid container spacing={4}>*/}
+                {/*<Grid item xs = {6}>*/}
                 <UserReservationPageInterface rooms={this.props.rooms}/>
-                </Grid>
-                <Grid item xs = {6}>
-                <ThirtyMinIntervalColumn/>
-                </Grid>
-                </Grid>
+                {/*</Grid>*/}
+                {/*<Grid item xs = {6}>*/}
+                {/*<ThirtyMinIntervalColumn/>*/}
+                {/*</Grid>*/}
+                {/*</Grid>*/}
             </div>
         );
     }
