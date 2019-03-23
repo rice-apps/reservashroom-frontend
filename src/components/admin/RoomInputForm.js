@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Fab from '@material-ui/core/Fab';
-import Icon from '@material-ui/core/Icon';
+import AddIcon from '@material-ui/icons/Add';
+import Switch from '@material-ui/core/Switch';
 
 export default class RoomInputForm extends Component {
 
@@ -10,41 +11,42 @@ export default class RoomInputForm extends Component {
         super(state, props);
         this.state = {
             multiline: 'Controlled',
-            roomNameInput: '',
-            roomCapacityInput: '',
-            roomMaxDurationInput: '',
-            allowsAlcoholInput: 'No',
-            allowsFoodInput: 'No',
-            autoReserveInput: 'No',
-            weeksInAdvanceInput: '',
-            startTimeInput: '',
-            endTimeInput: '',
-            rules: '',
+            rules: [[''], ['', true], ['', true], ['', true], ['', true], ['', true], ['', true], ['', true], ['']],
         };
     }
-    handleChange = name => event => {
+    toggleRule = index => event => {
+        let rules = this.state.rules;
+        rules[index][1] = event.target.checked;
         this.setState({
-            [name]: event.target.value,
+            rules: rules,
+        });
+    };
+
+    changeRule = index => event => {
+        let rules = this.state.rules;
+        rules[index][0] = event.target.value;
+        this.setState({
+            rules: rules,
         });
     };
 
     createRoom = () => {
-        var new_room =
+        let new_room =
             {
-                roomName: this.state.roomNameInput,
-                roomCapacity: this.state.roomCapacityInput,
-                roomMaxDuration: this.state.roomMaxDurationInput,
-                allowsAlcohol: this.state.allowsAlcoholInput,
-                allowsFood: this.state.allowsFoodInput,
-                autoReserve: this.state.autoReserveInput,
-                weeksInAdvance: this.state.weeksInAdvanceInput,
-                startTime: this.state.startTimeInput,
-                endTime: this.state.endTimeInput,
+                roomName: this.state.rules[0],
+                roomCapacity: this.state.rules[1],
+                roomMaxDuration: this.state.rules[2],
+                weeksInAdvance: this.state.rules[3],
+                startTime: this.state.rules[4],
+                endTime: this.state.rules[5],
+                allowsAlcohol: this.state.rules[6],
+                allowsFood: this.state.rules[7],
+                autoReserve: this.state.rules[8],
             };
-        var rooms = this.props.rooms;
+        let rooms = this.props.rooms;
         rooms.push(new_room);
         this.props.updateRooms(rooms);
-    }
+    };
 
     render() {
         const options= [
@@ -60,77 +62,58 @@ export default class RoomInputForm extends Component {
                 value: 'Null',
                 label: 'Does not apply'
             }
-
-
         ];
 
-        const styles = theme => ({
-            fab: {
-                margin: theme.spacing.unit,
-            },
+        const titles = [
+            'Room Name',        // 0  -- Free input
+            'Max Capacity',     // 1
+            'Maximum Duration', // 2
+            'Weeks In Advance', // 3
+            'When to start',    // 4
+            'When to end',      // 5
+            'Alcohol?',         // 6 -- Yes/No input
+            'Food?',            // 7
+            'Auto Reserve?'];   // 8
 
-        });
-
-        const rules = ['roomNameInput', 'roomCapacityInput', 'roomMaxDurationInput', 'weeksInAdvanceInput', 'startTimeInput', 'endTimeInput' ];
-        const titles = ['Name', 'Capacity', 'Maximum Duration', 'Weeks In Advance', 'When to start', 'When to end']
-        const rulesYN = ['allowsAlcoholInput', 'allowsFoodInput', 'autoReserveInput']
-        const titlesYN = ['Alcohol?', 'Food?', 'Auto Reserve?']
         return (
-
-            <form>
-            <div style={{backgroundColor: 'Aquamarine', height: '150%'}}>
-                {rules.map((rule, index) => {
+            <div>
+                {this.state.rules.map((rule, index) => {
                     return (
-                        <div style={{backgroundColor: 'Azure', paddingLeft: 5, display: 'flex', justifyContent: 'space-between'}}>
-
-                            {/*<input onChange={(e) => roomDetails(e)} name = {rule} />*/}
+                        <div style={{height: 50, margin: -10, display: 'flex'}}>
+                            <div style={{width: 60, marginTop: 10}}>
+                                {rule.length > 1 ? <Switch
+                                    checked={rule[1]}
+                                    onChange={this.toggleRule(index)}
+                                    value={true}
+                                /> : <div/>}
+                            </div>
                             <TextField
-
-                                id="standard-name"
+                                id={index > 5 ? "standard-name" : "standard-select-currency"}
+                                select={index > 5}
                                 label={titles[index]}
-                                value={this.state[rule]}
-                                onChange={this.handleChange(rule)}
-                                margin="normal"
-                            />
-                            <span style={{flex:8}}/>
-                        </div>
-                    )
-                })}
-                {rulesYN.map((rule, index) => {
-                    return (
-                        <div style={{backgroundColor: 'Azure', paddingLeft: 5, display: 'flex', justifyContent: 'space-between'}}>
-                            <TextField
-                                id="standard-select-currency"
-                                select
-                                label={titlesYN[index]}
-                                value={this.state[rule]}
-                                onChange={this.handleChange(rule)}
-                                margin="normal"
+                                value={rule[0]}
+                                onChange={this.changeRule(index)}
+                                margin="dense"
                             >
-                                {options.map(option => (
+                                {index > 5 ? options.map(option => (
                                     <MenuItem key={option.value} value={option.value}>
                                         {option.label}
                                     </MenuItem>
-                                ))}
+                                )) : <div/>}
                             </TextField>
-                            <span style={{flex:8}}/>
+                        </div>
+                    )
+                })}
 
-                            {this.props.rooms.map((room)=>{
-                                return (
-                                    <div>
-                                        {room.roomName}
-                                    </div>
-                                )
-                            })}
+                {this.props.rooms.map((room)=>{
+                    return (
+                        <div>
+                            {room.roomName}
                         </div>
                     )
                 })}
 
                 <div style={{backgroundColor: 'Azure', paddingLeft: 5, display: 'flex', justifyContent: 'space-between'}}>
-
-
-                    {/*<input onChange={(e) => roomDetails(e)} name = 'rulesInput' />*/}
-
                     <TextField
                         id="standard-textarea"
                         label="Rules?"
@@ -138,18 +121,13 @@ export default class RoomInputForm extends Component {
                         multiline
                         margin="normal"
                     />
-
-                    <span style={{flex:8}}/>
                 </div>
-
-
                 <div>
-                    <Fab color="Azure" aria-label="Add" onClick={()=>this.createRoom()}>
-                        <Icon color="action">add_circle</Icon>
+                    <Fab color="primary" aria-label="Add" onClick={()=>this.createRoom()}>
+                        <AddIcon />
                     </Fab>
                 </div>
             </div>
-            </form>
         );
     }
 }
