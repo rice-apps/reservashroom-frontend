@@ -46,7 +46,7 @@ export default class ThirtyMinIntervalColumn extends Component {
                         return (
                             <Grid item xs={1} style={{}}>
                                 <div>
-                                    <CalendarCol startTime = {this.props.startTime} endTime={this.props.endTime} day={day}/>
+                                    <CalendarCol startTime = {this.props.startTime} endTime={this.props.endTime} datePicked={this.props.datePicked}/>
                                 </div>
                             </Grid>
                         )

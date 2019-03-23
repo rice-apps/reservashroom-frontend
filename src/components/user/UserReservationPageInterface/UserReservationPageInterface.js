@@ -58,7 +58,8 @@ class UserReservationPageInterface extends React.Component {
         food: false,
         alcohol:false,
         startTime:"06:00",
-        endTime: "16:00"
+        endTime: "16:00",
+        datePicked: "3/12/2019",
     };
 
     componentDidMount() {
@@ -177,7 +178,7 @@ class UserReservationPageInterface extends React.Component {
                                             shrink: true,
                                         }}
                                         inputProps={{
-                                            step: 300, // 5 min
+                                            step: 1800, // 5 min
                                         }}
                                         onChange={this.handleTimeChange('startTime')}
                                     />
@@ -195,7 +196,7 @@ class UserReservationPageInterface extends React.Component {
                                             shrink: true,
                                         }}
                                         inputProps={{
-                                            step: 300, // 5 min
+                                            step: 1800, // 5 min
                                         }}
 
                                         onChange={this.handleTimeChange('endTime')}
@@ -214,7 +215,7 @@ class UserReservationPageInterface extends React.Component {
                         </form>
                     </Grid>
                     <Grid item xs = {6}>
-                        <ThirtyMinIntervalColumn startTime ={this.state.startTime} endTime = {this.state.endTime} />
+                        <ThirtyMinIntervalColumn startTime ={this.state.startTime} endTime = {this.state.endTime} datePicked={this.state.datePicked} />
                     </Grid>
                 </Grid>
             </div>
