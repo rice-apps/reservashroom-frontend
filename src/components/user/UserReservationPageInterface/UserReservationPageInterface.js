@@ -20,6 +20,11 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import ReactDOM from 'react-dom';
 import Grid from "@material-ui/core/Grid/Grid";
 import ThirtyMinIntervalColumn from "../UserTimeTable/ThirtyMinIntervalColumn";
+import TableRow from '@material-ui/core/TableRow';
+
+import 'date-fns';
+import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider,  InlineDatePicker } from 'material-ui-pickers';
 
 const styles = theme => ({
     root: {
@@ -59,8 +64,8 @@ class UserReservationPageInterface extends React.Component {
         alcohol:false,
         startTime:"06:00",
         endTime: "16:00",
-        pickedStartDate: "3/12/2019",
-        pickedEndDate: "3/12/2019",
+        pickedStartDate: new Date('2019/03/23'),
+        pickedEndDate: new Date('2019/03/23'),
     };
 
     componentDidMount() {
@@ -80,11 +85,16 @@ class UserReservationPageInterface extends React.Component {
 
     handleTimeChange = prop => event => {
         this.setState({[prop]: event.target.value});
-    }
+    };
 
-    handleDateChange = prop => event => {
-        this.setState({[prop]: event.target.value});
-    }
+    handleStartDateChange = (date) => {
+        this.setState({ pickedStartDate: date });
+    };
+
+    handleEndDateChange = (date) => {
+        this.setState({ pickedEndDate: date });
+    };
+
 
     handleButtonClick = () =>{
         console.log(this.state);
@@ -172,6 +182,7 @@ class UserReservationPageInterface extends React.Component {
 
 
                             <div>
+                                <TableRow>
                                 {/*Start Date and Time*/}
                                 <FormControl className={classes.formControl}>
                                     {/*<form className={classes.formControl} noValidate>*/}
@@ -193,7 +204,29 @@ class UserReservationPageInterface extends React.Component {
                                     {/*<form className={classes.formControl} noValidate>*/}
                                 </FormControl>
 
+                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+
+                                        <InlineDatePicker
+                                            keyboard
+                                            margin="normal"
+                                            label="Start date"
+                                            value={this.state.pickedStartDate}
+                                            onChange={this.handleStartDateChange}
+                                            format="MM/dd/yyyy"
+                                            // mask={value =>
+                                            //     // handle clearing outside if value can be changed outside of the component
+                                            //     value ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/] : []
+                                            // }
+                                            disableOpenOnEnter
+                                            animateYearScrolling={false}
+                                        />
+
+                                </MuiPickersUtilsProvider>
+                                </TableRow>
+
+
                                 {/*End Date and Time*/}
+                                <TableRow>
                                 <FormControl className={classes.formControl}>
                                     <TextField
                                         id="time"
@@ -212,6 +245,29 @@ class UserReservationPageInterface extends React.Component {
                                     />
                                     {/*</form>*/}
                                 </FormControl>
+
+                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+
+                                    <InlineDatePicker
+                                        keyboard
+                                        margin="normal"
+                                        label="End date"
+                                        value={this.state.pickedEndDate}
+                                        onChange={this.handleEndDateChange}
+                                        format="MM/dd/yyyy"
+
+                                        mask={value =>
+                                            // handle clearing outside if value can be changed outside of the component
+                                            value ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/] : []
+                                        }
+                                        disableOpenOnEnter
+                                        animateYearScrolling={false}
+                                    />
+
+                                </MuiPickersUtilsProvider>
+                                </TableRow>
+
+
                                 <Button
                                     variant="contained"
                                     color="primary"
