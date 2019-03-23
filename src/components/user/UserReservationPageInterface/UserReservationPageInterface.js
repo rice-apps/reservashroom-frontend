@@ -59,7 +59,8 @@ class UserReservationPageInterface extends React.Component {
         alcohol:false,
         startTime:"06:00",
         endTime: "16:00",
-        datePicked: "3/12/2019",
+        pickedStartDate: "3/12/2019",
+        pickedEndDate: "3/12/2019"
     };
 
     componentDidMount() {
@@ -78,6 +79,10 @@ class UserReservationPageInterface extends React.Component {
     };
 
     handleTimeChange = prop => event => {
+        this.setState({[prop]: event.target.value});
+    }
+
+    handleDateChange = prop => event => {
         this.setState({[prop]: event.target.value});
     }
 
@@ -215,7 +220,8 @@ class UserReservationPageInterface extends React.Component {
                         </form>
                     </Grid>
                     <Grid item xs = {6}>
-                        <ThirtyMinIntervalColumn startTime ={this.state.startTime} endTime = {this.state.endTime} datePicked={this.state.datePicked} />
+                        <ThirtyMinIntervalColumn startTime ={this.state.startTime} endTime = {this.state.endTime}
+                                                 pickedStartDate={this.state.pickedStartDate}  pickedEndDate={this.state.pickedEndDate} />
                     </Grid>
                 </Grid>
             </div>
