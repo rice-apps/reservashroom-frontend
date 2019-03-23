@@ -60,7 +60,7 @@ class UserReservationPageInterface extends React.Component {
         startTime:"06:00",
         endTime: "16:00",
         pickedStartDate: "3/12/2019",
-        pickedEndDate: "3/12/2019"
+        pickedEndDate: "3/12/2019",
     };
 
     componentDidMount() {
@@ -170,7 +170,9 @@ class UserReservationPageInterface extends React.Component {
                                 </FormGroup>
                             </div>
 
+
                             <div>
+                                {/*Start Date and Time*/}
                                 <FormControl className={classes.formControl}>
                                     {/*<form className={classes.formControl} noValidate>*/}
                                     <TextField
@@ -190,6 +192,8 @@ class UserReservationPageInterface extends React.Component {
                                     {/*</form>*/}
                                     {/*<form className={classes.formControl} noValidate>*/}
                                 </FormControl>
+
+                                {/*End Date and Time*/}
                                 <FormControl className={classes.formControl}>
                                     <TextField
                                         id="time"
