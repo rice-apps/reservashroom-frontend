@@ -8,6 +8,8 @@ export default class CalendarCol extends Component {
     color = '';
     render() {
         const startTimes = Array.from(Array(48).keys());
+        const daysOfWeek = Array.of("Monday","Tuesday","Wednesday","Thursday",
+            "Friday","Saturday","Sunday");
         return (
             <Grid container xs = {12} spacing={4} style={{marginLeft: 0}}>
 
@@ -15,11 +17,30 @@ export default class CalendarCol extends Component {
                     // console.log(this.props.startTime);
                     // console.log(this.props.endTime);
                     var [start, end] = timeToIndex(this.props.startTime, this.props.endTime);
-                    console.log(start);
-                    console.log(end);
+                    var startDate = String(this.props.pickedStartDate).split("/");
+                    var endDate = String(this.props.pickedEndDate).split("/");
+                    var startMonth = startDate[0]; var startDay=  startDate[1]; var startYear = startDate[2];
+                    var endMonth = endDate[0]; var endDay=  endDate[1]; var endYear = endDate[2];
+                    var t = [0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4];
+                    if (startMonth < 3) {
+                        startYear = startYear - 1;
+                    }
+                    if (endMonth < 3) {
+                        endYear = endYear - 1;
+                    }
+                    var startDayIndex = (startYear + Math.floor(startYear/4) - Math.floor(startYear/100) + Math.floor(startYear/400) + t[startMonth-1] + startDay) % 7;
+                    var endDayIndex = (endYear + endYear/4 - endYear/100 + endYear/400 + t[endMonth-1] + endDay) % 7;
+                    var startDayOfWeek = daysOfWeek[startDayIndex];
+                    var endDayOfWeek = daysOfWeek[endDayIndex];
+
+
+                    console.log(startDayOfWeek);
+                    console.log(this.props.day);
 
                     if (startTime >= start && startTime <= end) {
-                        this.color = 'blue';
+                        if (startDayOfWeek === this.props.day) {
+                            this.color = 'blue';
+                        }
                     } else {
                         this.color = 'white'
                     }
@@ -54,7 +75,7 @@ function indexToTime(index) {
 }
 
 function timeToIndex(startTimeStr, endTimeStr) {
-    console.log(endTimeStr);
+    // console.log(endTimeStr);
     var startTimeInt = String(startTimeStr).split(":");
     var startHour = startTimeInt[0];
     var startMin = startTimeInt[1];
