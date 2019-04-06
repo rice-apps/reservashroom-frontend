@@ -5,12 +5,11 @@ import CalendarCol from './ColumnOfCalendar.js';
 import CalendarColTime from './ColumnOfCalendarTimeLabel.js';
 
 export default class ThirtyMinIntervalColumn extends Component {
-    render () {
+
+render () {
         const startTimes = Array.from(Array(48).keys());
         const endTimes = Array.from(Array(48).keys());
-        const days = Array.of("Monday","Tuesday","Wednesday","Thursday",
-            "Friday","Saturday","Sunday");
-
+        const days = Array.of("Monday","Tuesday","Wednesday","Thursday", "Friday","Saturday","Sunday");
         return (
             <div style={{width: '80%', marginLeft: 50}}>
                 <div style = {{ display: "flex",
@@ -37,22 +36,40 @@ export default class ThirtyMinIntervalColumn extends Component {
 
                     <Grid item xs={1} style={{  backgroundColor: '#9ad1d1'}}>
                         <div>
-                        {/*This is INTENIONALLY EMPTY to help with spacing */}
+                        {/*This is INTENTIONALLY EMPTY to help with spacing */}
                         <CalendarColTime/>
                         </div>
                     </Grid>
 
-                    {days.map((day) => {
-                        return (
-                            <Grid item xs={1} style={{}}>
-                                <div>
-                                    <CalendarCol startTime = {this.props.startTime} endTime={this.props.endTime}
-                                                 pickedStartDate={this.props.pickedStartDate}  pickedEndDate={this.props.pickedEndDate}
-                                                    day = {day}/>
-                                </div>
-                            </Grid>
-                        )
+                    {this.props.events.map((event) => {
+
+                        // console.log(event.pickedEndDate);
+                        days.map((day) => {
+                            return (
+                                <Grid item xs={1} style={{}}>
+                                    <div>
+                                        <CalendarCol startTime={event.startTime} endTime={event.endTime}
+                                                     pickedStartDate={event.pickedStartDate}
+                                                     pickedEndDate={event.pickedEndDate}
+                                                     day={day} eventName={event.eventName}/>
+                                    </div>
+                                </Grid>
+                            )
+                        })
                     })}
+
+                    {/*{days.map((day) => {*/}
+                        {/*return (*/}
+                            {/*<Grid item xs={1} >*/}
+                                {/*<div>*/}
+                            {/*<CalendarCol startTime={this.props.startTime} endTime={this.props.endTime}*/}
+                                         {/*pickedStartDate={this.props.pickedStartDate}*/}
+                                         {/*pickedEndDate={this.props.pickedEndDate}*/}
+                                         {/*day={day} eventName={this.props.eventName}/>*/}
+                                {/*</div>*/}
+                            {/*</Grid>*/}
+                        {/*)*/}
+                    {/*})}*/}
 
                     {/*</Grid>*/}
                 </Grid>

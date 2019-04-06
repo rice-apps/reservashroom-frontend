@@ -15,26 +15,13 @@ export default class CalendarCol extends Component {
             <Grid container xs = {12} spacing={4} style={{marginLeft: 0}}>
 
                 {startTimes.map((startTime, index,) => {
-                    // console.log(this.props.startTime);
-                    // console.log(this.props.endTime);
+
                     var [start, end] = timeToIndex(this.props.startTime, this.props.endTime);
                     // var startDate = String(this.props.pickedStartDate).split("/");
                     // var endDate = String(this.props.pickedEndDate).split("/");
 
                     var startDayIndex =this.props.pickedStartDate.getDay();
                     var endDayIndex = this.props.pickedEndDate.getDay();
-
-                    // var startMonth = startDate[0]; var startDay=  startDate[1]; var startYear = startDate[2];
-                    // var endMonth = endDate[0]; var endDay=  endDate[1]; var endYear = endDate[2];
-                    // var t = [0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4];
-                    // if (startMonth < 3) {
-                    //     startYear = startYear - 1;
-                    // }
-                    // if (endMonth < 3) {
-                    //     endYear = endYear - 1;
-                    // }
-                    // var startDayIndex = (startYear + Math.floor(startYear/4) - Math.floor(startYear/100) + Math.floor(startYear/400) + t[startMonth-1] + startDay) % 7;
-                    // var endDayIndex = (endYear + endYear/4 - endYear/100 + endYear/400 + t[endMonth-1] + endDay) % 7;
 
                     var startDayOfWeek = daysOfWeek[startDayIndex];
                     var endDayOfWeek = daysOfWeek[endDayIndex];
@@ -45,17 +32,26 @@ export default class CalendarCol extends Component {
 
                     if (startTime >= start && startTime <= end) {
                         if (startDayOfWeek === this.props.day) {
+                            // if (this.color === 'blue') {
+                            //     this.color = 'red';
+                            // }
                             this.color = 'blue';
+                            this.opacity = 0.5;
+                            // this.visibility  = "visible"
                         }
                     } else {
-                        this.color = 'white'
+                        this.color = 'white';
+                        this.opacity  = 1;
+                        // this.visibility = "visible";
                     }
+
                     return(
+
                         <Tooltip title={this.props.day + " " + indexToTime(startTimes[index])}>
 
                             <Grid item xs={12} style={{border:"solid 1px", fontSize: 8, backgroundColor: this.color,
-                                width: 100, height: 15, textAlign: 'center'}}>
-                                {/*{this.props.day}*/}
+                                width: 100, height: 15, textAlign: 'center', opacity:  this.opacity}}>
+                                {console.log("Wack")}
                             </Grid>
                         </Tooltip>
                     );

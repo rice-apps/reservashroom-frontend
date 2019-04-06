@@ -83,6 +83,34 @@ class UserReservationPageInterface extends React.Component {
     };
 
     infoMessage = 'No error for now';
+    events =  [
+        {
+            room: '',
+            eventName: '',
+            numPeople: 0,
+            food: false,
+            alcohol:false,
+            startTime:"06:00",
+            endTime: "16:00",
+            pickedStartDate: new Date('2019/03/23'),
+            pickedEndDate: new Date('2019/03/23'),
+            reservationColor: 'red',
+
+        },
+        {
+            room: '',
+            eventName: '',
+            numPeople: 0,
+            food: false,
+            alcohol:false,
+            startTime:"03:00",
+            endTime: "09:00",
+            pickedStartDate: new Date('2019/03/22'),
+            pickedEndDate: new Date('2019/03/22'),
+            reservationColor: 'yellow',
+
+        }
+    ];
 
 
     componentDidMount() {
@@ -331,8 +359,9 @@ class UserReservationPageInterface extends React.Component {
 
                     <Grid item xs = {6}>
                         <ThirtyMinIntervalColumn eventName = {this.state.eventName}
-                                                     startTime ={this.state.startTime} endTime = {this.state.endTime}
-                                                 pickedStartDate={this.state.pickedStartDate}  pickedEndDate={this.state.pickedEndDate} />
+                                                 startTime ={this.state.startTime} endTime = {this.state.endTime}
+                                                 pickedStartDate={this.state.pickedStartDate}  pickedEndDate={this.state.pickedEndDate}
+                                                 events = {this.events}/>
                     </Grid>
                 </Grid>
             </div>
