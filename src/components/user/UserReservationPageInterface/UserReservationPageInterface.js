@@ -21,7 +21,10 @@ import ReactDOM from 'react-dom';
 import Grid from "@material-ui/core/Grid/Grid";
 import ThirtyMinIntervalColumn from "../UserTimeTable/ThirtyMinIntervalColumn";
 import TableRow from '@material-ui/core/TableRow';
-
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider,  InlineDatePicker } from 'material-ui-pickers';
@@ -59,6 +62,7 @@ class UserReservationPageInterface extends React.Component {
 
     state = {
         room: '',
+        eventName: '',
         numPeople: 0,
         food: false,
         alcohol:false,
@@ -66,7 +70,15 @@ class UserReservationPageInterface extends React.Component {
         endTime: "16:00",
         pickedStartDate: new Date('2019/03/23'),
         pickedEndDate: new Date('2019/03/23'),
-    };
+        maxCapacity: 20,
+        maxDuration: 120,
+        allowAlcohol: 0,
+        allowFood: 1,
+        weeksInAdvance: 0,
+        autoReserve: 1,
+        allowRecurring:1
+
+};
 
     componentDidMount() {
         // this.setState({
@@ -75,8 +87,11 @@ class UserReservationPageInterface extends React.Component {
         this.forceUpdate();
     }
 
+
+
     handleRoomChoose = event => {
         this.setState({ room: event.target.value });
+        getRoomInfo(event.target.value);
     };
 
     handleToggle = prop => event => {
@@ -105,6 +120,10 @@ class UserReservationPageInterface extends React.Component {
         console.log(event.target.value);
     };
 
+    handleEventNameChange = event =>{
+        this.setState({eventName: event.target.value});
+        console.log(event.target.value);
+    };
     // handleChange = name => event => {
     //     this.setState({
     //         [name]: event.target.value,
@@ -118,10 +137,12 @@ class UserReservationPageInterface extends React.Component {
             <div>
                 <Grid container spacing={4}>
                     <Grid item xs = {6}>
+                        <Grid>
 
                         <form className={classes.root} noValidate autoComplete="off">
 
                             <div>
+
                                 <FormControl className={classes.formControl}>
                                     <InputLabel>Which room</InputLabel>
                                     <Select
@@ -148,6 +169,15 @@ class UserReservationPageInterface extends React.Component {
                                     helperText= "Input the number of people who will attend your event"
                                     // margin="normal"
                                     onChange={this.handleNumPeopleChange}
+                                    value = {this.state.numPeople}
+                                />
+
+                                <TextField
+                                    id="eventName"
+                                    label="Event Name"
+                                    className={classes.textField}
+                                    helperText= "Input the name of your event"
+                                    onChange={this.handleEventNameChange}
                                     value = {this.state.numPeople}
                                 />
 
@@ -278,9 +308,25 @@ class UserReservationPageInterface extends React.Component {
                                 </Button>
                             </div>
                         </form>
+                        </Grid>
+                            <Grid item xs = {6}>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    className={classes.button}
+                                    onClick = {this.handleButtonClick.bind(this)}
+                                >
+                                    Reserve
+                                </Button>
+                            </Grid>
+
+
                     </Grid>
+
+
                     <Grid item xs = {6}>
-                        <ThirtyMinIntervalColumn startTime ={this.state.startTime} endTime = {this.state.endTime}
+                        <ThirtyMinIntervalColumn eventName = {this.state.eventName}
+                                                     startTime ={this.state.startTime} endTime = {this.state.endTime}
                                                  pickedStartDate={this.state.pickedStartDate}  pickedEndDate={this.state.pickedEndDate} />
                     </Grid>
                 </Grid>
@@ -293,6 +339,28 @@ class UserReservationPageInterface extends React.Component {
 UserReservationPageInterface.propTypes = {
     classes: PropTypes.object.isRequired,
 };
+
+function getRoomInfo(roomName) {
+    var i;
+    for (i = 0; i < this.props.rooms; i++) {
+        if (this.props.rooms[i].name == roomName) {
+            let roomInfo = this.props.rooms[i];
+            this.setState({maxCapacity: roomInfo.maxCapacity});
+            this.setState({maxDuration: roomInfo.maxDuration});
+            this.setState({allowAlcohol: roomInfo.alcohol});
+            this.setState({allowFood: roomInfo.food});
+            this.setState({weeksInAdvance: roomInfo.weeksInAdvance});
+            this.setState({autoReserve: roomInfo.autoReserve});
+            this.setState({allowRecurring: roomInfo.allowRecurring});
+
+        }
+    }
+}
+
+function CheckLegal(type, value) {
+
+}
+
 
 export default withStyles(styles)(UserReservationPageInterface);
 
