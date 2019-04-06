@@ -28,6 +28,8 @@ import TableHead from '@material-ui/core/TableHead';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider,  InlineDatePicker } from 'material-ui-pickers';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
     root: {
@@ -78,7 +80,10 @@ class UserReservationPageInterface extends React.Component {
         autoReserve: 1,
         allowRecurring:1
 
-};
+    };
+
+    infoMessage = 'No error for now';
+
 
     componentDidMount() {
         // this.setState({
@@ -96,6 +101,7 @@ class UserReservationPageInterface extends React.Component {
 
     handleToggle = prop => event => {
         this.setState({ [prop]: event.target.checked });
+        CheckLegal([prop], event.target.checked);
     };
 
     handleTimeChange = prop => event => {
@@ -118,6 +124,7 @@ class UserReservationPageInterface extends React.Component {
     handleNumPeopleChange = event =>{
         this.setState({numPeople: event.target.value});
         console.log(event.target.value);
+        CheckLegal("numPeople", event.target.value);
     };
 
     handleEventNameChange = event =>{
@@ -178,7 +185,7 @@ class UserReservationPageInterface extends React.Component {
                                     className={classes.textField}
                                     helperText= "Input the name of your event"
                                     onChange={this.handleEventNameChange}
-                                    value = {this.state.numPeople}
+                                    value = {this.state.eventName}
                                 />
 
 
@@ -310,14 +317,12 @@ class UserReservationPageInterface extends React.Component {
                         </form>
                         </Grid>
                             <Grid item xs = {6}>
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.button}
-                                    onClick = {this.handleButtonClick.bind(this)}
-                                >
-                                    Reserve
-                                </Button>
+                                <Paper className={classes.root} elevation={1}>
+                                    <Typography variant="h5" component="h3">
+                                        {this.infoMessage}
+                                    </Typography>
+                                </Paper>
+
                             </Grid>
 
 
@@ -352,13 +357,44 @@ function getRoomInfo(roomName) {
             this.setState({weeksInAdvance: roomInfo.weeksInAdvance});
             this.setState({autoReserve: roomInfo.autoReserve});
             this.setState({allowRecurring: roomInfo.allowRecurring});
-
+            break;
         }
+
     }
 }
 
 function CheckLegal(type, value) {
+    //This functions check for any possible conflicts and send that to the user
+    switch (type) {
 
+        // room: '',
+        //     eventName: '',
+        //     alcohol:false,
+        //     startTime:"06:00",
+        //     endTime: "16:00",
+        //     pickedStartDate: new Date('2019/03/23'),
+        //     pickedEndDate: new Date('2019/03/23'),
+        //     weeksInAdvance: 0,
+        //     autoReserve: 1,
+        //     allowRecurring:1
+        case "numPeople":
+            if (value > this.maxCapacity) {
+                this.info = "Too many people";
+            }
+            break;
+        case "food":
+            if (value === true &&  this.allowFood === 0) {
+                this.info = "Event does not allow food";
+            }
+            break;
+        case "alcohol":
+            if (value === true &&  this.allowAlcohol === 0) {
+                this.info = "Event does not allow alcohol";
+            }
+            break;
+        default:
+            this.infoMessage = "";
+    }
 }
 
 
