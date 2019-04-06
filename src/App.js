@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import store from "./rdx/index";
 
 import Page from './components/Page';
+import Landing from "./components/Landing";
 
 class App extends Component {
 
