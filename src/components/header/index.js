@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
 
 const HeaderBox = styled.div`
-  background-color: Aquamarine;
+  background-color: #3b3a36;
   padding: 0.5em;
 `;
 
@@ -18,8 +18,8 @@ class Header extends Component {
     render() {
         return (
             <HeaderBox>
-                <Button name='user' onClick={(e) => this.props.onSelect(e, 'user')}>User</Button>
-                <Button name='admin' onClick={(e) => this.props.onSelect(e, 'admin')}>Admin</Button>
+                <Button name='user' style={{color: "white"}} onClick={(e) => this.props.onSelect(e, 'user')}>User</Button>
+                <Button name='admin' style={{color: "white"}} onClick={(e) => this.props.onSelect(e, 'admin')}>Admin</Button>
             </HeaderBox>
         );
     }

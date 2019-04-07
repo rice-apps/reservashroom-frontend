@@ -117,10 +117,8 @@ class UserReservationPageInterface extends React.Component {
         return (
             <div>
                 <Grid container spacing={4}>
-                    <Grid item xs = {6}>
-
+                    <Grid item xs = {5} >
                         <form className={classes.root} noValidate autoComplete="off">
-
                             <div>
                                 <FormControl className={classes.formControl}>
                                     <InputLabel>Which room</InputLabel>

@@ -12,19 +12,13 @@ export default class ThirtyMinIntervalColumn extends Component {
             "Friday","Saturday","Sunday");
 
         return (
-            <div style={{width: '80%', marginLeft: 50}}>
-                <div style = {{ display: "flex",
-                    textAlign: 'center'}}>
-
-
+            <div>
+                <div style = {{display: "flex", textAlign: 'center'}}>
                     <Grid container spacing={4} style = {{height: 15}} >
-                        <Grid item xs={1} style={{width: 75,  backgroundColor: '#7fbfbf'} }>
-                            {/*INTENTIONALLY Empty for spacing */}
-                        </Grid>
-
+                        {/*INTENTIONALLY Empty for spacing */}
+                        <Grid item xs={1.3} style={{width: 75}}/>
                         {days.map(day => (
-                            <Grid item xs={1} style={{border: "solid 1px",width: 75,
-                                backgroundColor: '#7fbfbf', fontSize: 8}}>
+                            <Grid item xs={1.3} style={{width: 75, fontSize: 10, color: 'white', backgroundColor: '#3b3a36'}}>
                                 {day}
                             </Grid>
                         ))}
@@ -35,16 +29,13 @@ export default class ThirtyMinIntervalColumn extends Component {
                     {/*<Grid item xs = {12/7.0}>*/}
 
 
-                    <Grid item xs={1} style={{  backgroundColor: '#9ad1d1'}}>
-                        <div>
-                        {/*This is INTENIONALLY EMPTY to help with spacing */}
+                    <Grid item xs={1.3} style={{width: 75}}>
                         <CalendarColTime/>
-                        </div>
                     </Grid>
 
                     {days.map((day) => {
                         return (
-                            <Grid item xs={1} style={{}}>
+                            <Grid item xs={1.3} style={{width: 75}}>
                                 <div>
                                     <CalendarCol startTime = {this.props.startTime} endTime={this.props.endTime}
                                                  pickedStartDate={this.props.pickedStartDate}  pickedEndDate={this.props.pickedEndDate}

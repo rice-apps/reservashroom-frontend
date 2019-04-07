@@ -9,8 +9,14 @@ import Admin from './admin';
 // Style imports
 import styled from 'styled-components';
 
+const Background = styled.div`
+ background-color: #e9ece5;
+ margin-left: 10;
+ margin-right: 10;
+`;
+
 const HeaderMargin = styled.div`
- margin-top: 2em;
+ margin: 2em;
  padding: 1em;
 `;
 
@@ -45,12 +51,12 @@ class Page extends Component {
 
     render() {
         return (
-            <div>
+            <Background>
                 <Header onSelect={(e, name) => this.handleHeader(e, name)}/>
                 <HeaderMargin >
                     {this.route(this.state.selected)}
                 </HeaderMargin>
-            </div>
+            </Background>
         );
     }
 }

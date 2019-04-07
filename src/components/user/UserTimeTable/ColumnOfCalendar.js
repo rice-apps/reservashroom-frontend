@@ -45,18 +45,19 @@ export default class CalendarCol extends Component {
 
                     if (startTime >= start && startTime <= end) {
                         if (startDayOfWeek === this.props.day) {
-                            this.color = 'blue';
+                            this.color = ["Monday", "Wednesday", "Friday", "Sunday"].includes(this.props.day) ?
+                                'rgba(62, 155, 97, 0.9)' :
+                                'rgba(62, 155, 97, 0.7)' ;
                         }
                     } else {
-                        this.color = 'white'
+                        this.color = ["Monday", "Wednesday", "Friday", "Sunday"].includes(this.props.day) ?
+                            'rgba(179, 194, 191, 0.2)' :
+                            'rgba(233, 236, 229, 1)';
                     }
                     return(
                         <Tooltip title={this.props.day + " " + indexToTime(startTimes[index])}>
-
-                            <Grid item xs={12} style={{border:"solid 1px", fontSize: 8, backgroundColor: this.color,
-                                width: 100, height: 15, textAlign: 'center'}}>
-                                {/*{this.props.day}*/}
-                            </Grid>
+                            <Grid item xs={12} style={{border:"dotted 0.5px rgba(250, 250, 250, 0.8)", fontSize: 8, backgroundColor: this.color,
+                                width: 100, height: 15, textAlign: 'center'}}/>
                         </Tooltip>
                     );
                 })}
