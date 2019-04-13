@@ -17,18 +17,8 @@ export default class CalendarCol extends Component {
                 {startTimes.map((startTime, index,) => {
 
                     var [start, end] = timeToIndex(this.props.startTime, this.props.endTime);
-                    // var startDate = String(this.props.pickedStartDate).split("/");
-                    // var endDate = String(this.props.pickedEndDate).split("/");
-
                     var startDayIndex =this.props.pickedStartDate.getDay();
-                    var endDayIndex = this.props.pickedEndDate.getDay();
-
                     var startDayOfWeek = daysOfWeek[startDayIndex];
-                    var endDayOfWeek = daysOfWeek[endDayIndex];
-
-
-                    // console.log(startDayOfWeek);
-                    // console.log(this.props.day);
 
                     if (startTime >= start && startTime <= end) {
                         if (startDayOfWeek === this.props.day) {
