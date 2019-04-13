@@ -57,10 +57,6 @@ export default class RoomInputForm extends Component {
             {
                 value: 'False',
                 label: 'No',
-            },
-            {
-                value: 'Null',
-                label: 'Does not apply'
             }
         ];
 
@@ -88,12 +84,12 @@ export default class RoomInputForm extends Component {
                                 /> : <div/>}
                             </div>
                             <TextField
-                                id={index > 5 ? "standard-name" : "standard-select-currency"}
                                 select={index > 5}
                                 label={titles[index]}
                                 value={rule[0]}
                                 onChange={this.changeRule(index)}
                                 margin="dense"
+                                style={{width: 150}}
                             >
                                 {index > 5 ? options.map(option => (
                                     <MenuItem key={option.value} value={option.value}>

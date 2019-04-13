@@ -22,6 +22,12 @@ import Grid from "@material-ui/core/Grid/Grid";
 import ThirtyMinIntervalColumn from "../UserTimeTable/ThirtyMinIntervalColumn";
 import TableRow from '@material-ui/core/TableRow';
 import styled from 'styled-components';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
@@ -70,6 +76,7 @@ class UserReservationPageInterface extends React.Component {
 
     state = {
         room: '',
+        eventName: '',
         numPeople: 0,
         food: false,
         alcohol:false,
@@ -77,7 +84,16 @@ class UserReservationPageInterface extends React.Component {
         endTime: "16:00",
         pickedStartDate: new Date('2019/03/23'),
         pickedEndDate: new Date('2019/03/23'),
+        maxCapacity: 20,
+        maxDuration: 120,
+        allowAlcohol: 0,
+        allowFood: 1,
+        weeksInAdvance: 0,
+        autoReserve: 1,
+        allowRecurring:1
     };
+
+    infoMessage = 'No error for now';
 
     componentDidMount() {
         // this.setState({
@@ -88,10 +104,12 @@ class UserReservationPageInterface extends React.Component {
 
     handleRoomChoose = event => {
         this.setState({ room: event.target.value });
+        getRoomInfo(event.target.value);
     };
 
     handleToggle = prop => event => {
         this.setState({ [prop]: event.target.checked });
+        CheckLegal([prop], event.target.checked);
     };
 
     handleTimeChange = prop => event => {
@@ -114,7 +132,14 @@ class UserReservationPageInterface extends React.Component {
     handleNumPeopleChange = event =>{
         this.setState({numPeople: event.target.value});
         console.log(event.target.value);
+        CheckLegal("numPeople", event.target.value);
     };
+
+    handleEventNameChange = event =>{
+        this.setState({eventName: event.target.value});
+        console.log(event.target.value);
+    };
+
 
     // handleChange = name => event => {
     //     this.setState({
@@ -156,9 +181,17 @@ class UserReservationPageInterface extends React.Component {
                                 helperText= "Input the number of people who will attend your event"
                                 // margin="normal"
                                 onChange={this.handleNumPeopleChange}
-                                value = {this.state.numPeople}
+                                value = {this.state.eventName}
                             />
 
+                            <TextField
+                                id="eventName"
+                                label="Event Name"
+                                className={classes.textField}
+                                helperText= "Input the name of your event"
+                                onChange={this.handleEventNameChange}
+                                value = {this.state.numPeople}
+                            />
 
                         </div>
                         <div>
@@ -238,7 +271,7 @@ class UserReservationPageInterface extends React.Component {
                             <FormControl className={classes.formControl}>
                                 <TextField
                                     id="time"
-                                    label="Start Time"
+                                    label="End Time"
                                     type="time"
                                     value={this.state.endTime}
                                     className={classes.name}
@@ -248,14 +281,12 @@ class UserReservationPageInterface extends React.Component {
                                     inputProps={{
                                         step: 1800, // 5 min
                                     }}
-
                                     onChange={this.handleTimeChange('endTime')}
                                 />
                                 {/*</form>*/}
                             </FormControl>
 
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-
                                 <InlineDatePicker
                                     keyboard
                                     margin="normal"
@@ -263,7 +294,6 @@ class UserReservationPageInterface extends React.Component {
                                     value={this.state.pickedEndDate}
                                     onChange={this.handleEndDateChange}
                                     format="MM/dd/yyyy"
-
                                     mask={value =>
                                         // handle clearing outside if value can be changed outside of the component
                                         value ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/] : []
@@ -271,25 +301,30 @@ class UserReservationPageInterface extends React.Component {
                                     disableOpenOnEnter
                                     animateYearScrolling={false}
                                 />
-
                             </MuiPickersUtilsProvider>
                             </TableRow>
-
-
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                className={classes.button}
-                                onClick = {this.handleButtonClick.bind(this)}
-                            >
-                                Reserve
-                            </Button>
+                            <Paper className={classes.root} elevation={1}>
+                                <Typography variant="h5" component="h3">
+                                    {this.infoMessage}
+                                </Typography>
+                            </Paper>
                         </div>
                     </form>
+                    <Grid item xs = {6}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            className={classes.button}
+                            onClick = {this.handleButtonClick.bind(this)}
+                        >
+                            Reserve
+                        </Button>
+                    </Grid>
                 </SmallBlockDiv>
                 <BigBlockDiv>
                     <ThirtyMinIntervalColumn startTime ={this.state.startTime} endTime = {this.state.endTime}
-                        pickedStartDate={this.state.pickedStartDate}  pickedEndDate={this.state.pickedEndDate}/>
+                        pickedStartDate={this.state.pickedStartDate}  pickedEndDate={this.state.pickedEndDate}
+                        eventName = {this.state.eventName}/>
                 </BigBlockDiv>
             </div>
         );
@@ -300,6 +335,57 @@ class UserReservationPageInterface extends React.Component {
 UserReservationPageInterface.propTypes = {
     classes: PropTypes.object.isRequired,
 };
+
+function getRoomInfo(roomName) {
+    var i;
+    for (i = 0; i < this.props.rooms; i++) {
+        if (this.props.rooms[i].name == roomName) {
+            let roomInfo = this.props.rooms[i];
+            this.setState({maxCapacity: roomInfo.maxCapacity});
+            this.setState({maxDuration: roomInfo.maxDuration});
+            this.setState({allowAlcohol: roomInfo.alcohol});
+            this.setState({allowFood: roomInfo.food});
+            this.setState({weeksInAdvance: roomInfo.weeksInAdvance});
+            this.setState({autoReserve: roomInfo.autoReserve});
+            this.setState({allowRecurring: roomInfo.allowRecurring});
+            break;
+        }
+    }
+}
+
+function CheckLegal(type, value) {
+    //This functions check for any possible conflicts and send that to the user
+    switch (type) {
+
+        // room: '',
+        //     eventName: '',
+        //     alcohol:false,
+        //     startTime:"06:00",
+        //     endTime: "16:00",
+        //     pickedStartDate: new Date('2019/03/23'),
+        //     pickedEndDate: new Date('2019/03/23'),
+        //     weeksInAdvance: 0,
+        //     autoReserve: 1,
+        //     allowRecurring:1
+        case "numPeople":
+            if (value > this.maxCapacity) {
+                this.info = "Too many people";
+            }
+            break;
+        case "food":
+            if (value === true &&  this.allowFood === 0) {
+                this.info = "Event does not allow food";
+            }
+            break;
+        case "alcohol":
+            if (value === true &&  this.allowAlcohol === 0) {
+                this.info = "Event does not allow alcohol";
+            }
+            break;
+        default:
+            this.infoMessage = "";
+    }
+}
 
 export default withStyles(styles)(UserReservationPageInterface);
 
