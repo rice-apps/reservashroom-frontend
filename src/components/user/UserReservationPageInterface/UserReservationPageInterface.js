@@ -286,22 +286,22 @@ class UserReservationPageInterface extends React.Component {
                                 {/*</form>*/}
                             </FormControl>
 
-                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                <InlineDatePicker
-                                    keyboard
-                                    margin="normal"
-                                    label="End date"
-                                    value={this.state.pickedEndDate}
-                                    onChange={this.handleEndDateChange}
-                                    format="MM/dd/yyyy"
-                                    mask={value =>
-                                        // handle clearing outside if value can be changed outside of the component
-                                        value ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/] : []
-                                    }
-                                    disableOpenOnEnter
-                                    animateYearScrolling={false}
-                                />
-                            </MuiPickersUtilsProvider>
+                            {/*<MuiPickersUtilsProvider utils={DateFnsUtils}>*/}
+                                {/*<InlineDatePicker*/}
+                                    {/*keyboard*/}
+                                    {/*margin="normal"*/}
+                                    {/*label="End date"*/}
+                                    {/*value={this.state.pickedEndDate}*/}
+                                    {/*onChange={this.handleEndDateChange}*/}
+                                    {/*format="MM/dd/yyyy"*/}
+                                    {/*mask={value =>*/}
+                                        {/*// handle clearing outside if value can be changed outside of the component*/}
+                                        {/*value ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/] : []*/}
+                                    {/*}*/}
+                                    {/*disableOpenOnEnter*/}
+                                    {/*animateYearScrolling={false}*/}
+                                {/*/>*/}
+                            {/*</MuiPickersUtilsProvider>*/}
                             </TableRow>
                             <Paper className={classes.root} elevation={1}>
                                 <Typography variant="h5" component="h3">
