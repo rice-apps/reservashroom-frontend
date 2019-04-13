@@ -85,6 +85,7 @@ function timeToIndex(startTimeStr, endTimeStr) {
     endIndex == -17 ? endIndex = 31 : endIndex;
     endIndex == -16 ? endIndex = 32 : endIndex;
     endIndex == -15 ? endIndex = 33 : endIndex;
+    endIndex == -14 ? endIndex = 34 : endIndex;
     return [startIndex, endIndex];
 
 }
