@@ -6,12 +6,11 @@ import CalendarColTime from './ColumnOfCalendarTimeLabel.js';
 
 
 export default class ThirtyMinIntervalColumn extends Component {
-    render () {
+
+render () {
         const startTimes = Array.from(Array(48).keys());
         const endTimes = Array.from(Array(48).keys());
-        const days = Array.of("Monday","Tuesday","Wednesday","Thursday",
-            "Friday","Saturday","Sunday");
-
+        const days = Array.of("Monday","Tuesday","Wednesday","Thursday", "Friday","Saturday","Sunday");
         return (
             <div>
                 <div style = {{display: "flex", textAlign: 'center'}}>
@@ -27,13 +26,9 @@ export default class ThirtyMinIntervalColumn extends Component {
                 </div>
 
                 <Grid container spacing={4}>
-                    {/*<Grid item xs = {12/7.0}>*/}
-
-
                     <Grid item xs={1.3} style={{width: 75}}>
                         <CalendarColTime/>
                     </Grid>
-
                     {days.map((day) => {
                         return (
                             <Grid item xs={1.3} style={{width: 100}}>
@@ -45,8 +40,6 @@ export default class ThirtyMinIntervalColumn extends Component {
                             </Grid>
                         )
                     })}
-
-                    {/*</Grid>*/}
                 </Grid>
             </div>
         )
