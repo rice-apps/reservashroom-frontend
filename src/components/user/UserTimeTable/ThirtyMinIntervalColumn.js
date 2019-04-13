@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import CalendarCol from './ColumnOfCalendar.js';
 import CalendarColTime from './ColumnOfCalendarTimeLabel.js';
 
+
 export default class ThirtyMinIntervalColumn extends Component {
     render () {
         const startTimes = Array.from(Array(48).keys());
@@ -18,7 +19,7 @@ export default class ThirtyMinIntervalColumn extends Component {
                         {/*INTENTIONALLY Empty for spacing */}
                         <Grid item xs={1.3} style={{width: 75}}/>
                         {days.map(day => (
-                            <Grid item xs={1.3} style={{width: 75, fontSize: 10, color: 'white', backgroundColor: '#3b3a36'}}>
+                            <Grid item xs={1.3} style={{width: 100, fontSize: 10, color: 'white', backgroundColor: '#3b3a36'}}>
                                 {day}
                             </Grid>
                         ))}
@@ -35,7 +36,7 @@ export default class ThirtyMinIntervalColumn extends Component {
 
                     {days.map((day) => {
                         return (
-                            <Grid item xs={1.3} style={{width: 75}}>
+                            <Grid item xs={1.3} style={{width: 100}}>
                                 <div>
                                     <CalendarCol startTime = {this.props.startTime} endTime={this.props.endTime}
                                                  pickedStartDate={this.props.pickedStartDate}  pickedEndDate={this.props.pickedEndDate}

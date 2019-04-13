@@ -21,10 +21,21 @@ import ReactDOM from 'react-dom';
 import Grid from "@material-ui/core/Grid/Grid";
 import ThirtyMinIntervalColumn from "../UserTimeTable/ThirtyMinIntervalColumn";
 import TableRow from '@material-ui/core/TableRow';
+import styled from 'styled-components';
 
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider,  InlineDatePicker } from 'material-ui-pickers';
+
+const SmallBlockDiv = styled.div`
+    display: inline-block;
+    width: 35%;
+`;
+
+const BigBlockDiv = styled.div`
+    display: inline-block;
+    width: 65%;
+`;
 
 const styles = theme => ({
     root: {
@@ -116,172 +127,170 @@ class UserReservationPageInterface extends React.Component {
 
         return (
             <div>
-                <Grid container spacing={4}>
-                    <Grid item xs = {5} >
-                        <form className={classes.root} noValidate autoComplete="off">
-                            <div>
-                                <FormControl className={classes.formControl}>
-                                    <InputLabel>Which room</InputLabel>
-                                    <Select
-                                        value={this.state.room}
-                                        onChange={this.handleRoomChoose}
-                                        inputProps={{
-                                            name: 'Which room',
-                                            id: 'age-simple',
-                                        }}
-                                    >
-                                        {ranges.map(option => (
-                                            <MenuItem key={option.value} value={option.value}>
-                                                {option.label}
-                                            </MenuItem>
-                                        ))}
-                                    </Select>
-                                    <FormHelperText>Select the room you want to reserve</FormHelperText>
-                                </FormControl>
+                <SmallBlockDiv>
+                    <form className={classes.root} noValidate autoComplete="off">
+                        <div>
+                            <FormControl className={classes.formControl}>
+                                <InputLabel>Which room</InputLabel>
+                                <Select
+                                    value={this.state.room}
+                                    onChange={this.handleRoomChoose}
+                                    inputProps={{
+                                        name: 'Which room',
+                                        id: 'age-simple',
+                                    }}
+                                >
+                                    {ranges.map(option => (
+                                        <MenuItem key={option.value} value={option.value}>
+                                            {option.label}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                                <FormHelperText>Select the room you want to reserve</FormHelperText>
+                            </FormControl>
 
-                                <TextField
-                                    id="numPeople"
-                                    label="Number of People"
-                                    className={classes.textField}
-                                    helperText= "Input the number of people who will attend your event"
-                                    // margin="normal"
-                                    onChange={this.handleNumPeopleChange}
-                                    value = {this.state.numPeople}
+                            <TextField
+                                id="numPeople"
+                                label="Number of People"
+                                className={classes.textField}
+                                helperText= "Input the number of people who will attend your event"
+                                // margin="normal"
+                                onChange={this.handleNumPeopleChange}
+                                value = {this.state.numPeople}
+                            />
+
+
+                        </div>
+                        <div>
+                            <FormGroup>
+                                <FormControlLabel
+                                    control={
+                                        <Switch
+                                            checked={this.state.alcohol}
+                                            onChange={this.handleToggle('alcohol')}
+                                            value={true}
+                                        />
+                                    }
+                                    label="Alcohol"
                                 />
 
-
-                            </div>
-                            <div>
-                                <FormGroup>
-                                    <FormControlLabel
-                                        control={
-                                            <Switch
-                                                checked={this.state.alcohol}
-                                                onChange={this.handleToggle('alcohol')}
-                                                value={true}
-                                            />
-                                        }
-                                        label="Alcohol"
-                                    />
-
-                                    <FormControlLabel
-                                        control={
-                                            <Switch
-                                                checked={this.state.food}
-                                                onChange={this.handleToggle('food')}
-                                                value= {true}
-                                                color="primary"
-                                            />
-                                        }
-                                        label="Food"
-                                    />
-                                </FormGroup>
-                            </div>
-
-
-                            <div>
-                                <TableRow>
-                                {/*Start Date and Time*/}
-                                <FormControl className={classes.formControl}>
-                                    {/*<form className={classes.formControl} noValidate>*/}
-                                    <TextField
-                                        id="time"
-                                        label="Start Time"
-                                        type="time"
-                                        value={this.state.startTime}
-                                        className={classes.name}
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                        inputProps={{
-                                            step: 1800, // 5 min
-                                        }}
-                                        onChange={this.handleTimeChange('startTime')}
-                                    />
-                                    {/*</form>*/}
-                                    {/*<form className={classes.formControl} noValidate>*/}
-                                </FormControl>
-
-                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-
-                                        <InlineDatePicker
-                                            keyboard
-                                            margin="normal"
-                                            label="Start date"
-                                            value={this.state.pickedStartDate}
-                                            onChange={this.handleStartDateChange}
-                                            format="MM/dd/yyyy"
-                                            // mask={value =>
-                                            //     // handle clearing outside if value can be changed outside of the component
-                                            //     value ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/] : []
-                                            // }
-                                            disableOpenOnEnter
-                                            animateYearScrolling={false}
+                                <FormControlLabel
+                                    control={
+                                        <Switch
+                                            checked={this.state.food}
+                                            onChange={this.handleToggle('food')}
+                                            value= {true}
+                                            color="primary"
                                         />
+                                    }
+                                    label="Food"
+                                />
+                            </FormGroup>
+                        </div>
 
-                                </MuiPickersUtilsProvider>
-                                </TableRow>
 
+                        <div>
+                            <TableRow>
+                            {/*Start Date and Time*/}
+                            <FormControl className={classes.formControl}>
+                                {/*<form className={classes.formControl} noValidate>*/}
+                                <TextField
+                                    id="time"
+                                    label="Start Time"
+                                    type="time"
+                                    value={this.state.startTime}
+                                    className={classes.name}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    inputProps={{
+                                        step: 1800, // 5 min
+                                    }}
+                                    onChange={this.handleTimeChange('startTime')}
+                                />
+                                {/*</form>*/}
+                                {/*<form className={classes.formControl} noValidate>*/}
+                            </FormControl>
 
-                                {/*End Date and Time*/}
-                                <TableRow>
-                                <FormControl className={classes.formControl}>
-                                    <TextField
-                                        id="time"
-                                        label="Start Time"
-                                        type="time"
-                                        value={this.state.endTime}
-                                        className={classes.name}
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                        inputProps={{
-                                            step: 1800, // 5 min
-                                        }}
-
-                                        onChange={this.handleTimeChange('endTime')}
-                                    />
-                                    {/*</form>*/}
-                                </FormControl>
-
-                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
 
                                     <InlineDatePicker
                                         keyboard
                                         margin="normal"
-                                        label="End date"
-                                        value={this.state.pickedEndDate}
-                                        onChange={this.handleEndDateChange}
+                                        label="Start date"
+                                        value={this.state.pickedStartDate}
+                                        onChange={this.handleStartDateChange}
                                         format="MM/dd/yyyy"
-
-                                        mask={value =>
-                                            // handle clearing outside if value can be changed outside of the component
-                                            value ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/] : []
-                                        }
+                                        // mask={value =>
+                                        //     // handle clearing outside if value can be changed outside of the component
+                                        //     value ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/] : []
+                                        // }
                                         disableOpenOnEnter
                                         animateYearScrolling={false}
                                     />
 
-                                </MuiPickersUtilsProvider>
-                                </TableRow>
+                            </MuiPickersUtilsProvider>
+                            </TableRow>
 
 
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.button}
-                                    onClick = {this.handleButtonClick.bind(this)}
-                                >
-                                    Reserve
-                                </Button>
-                            </div>
-                        </form>
-                    </Grid>
-                    <Grid item xs = {6}>
-                        <ThirtyMinIntervalColumn startTime ={this.state.startTime} endTime = {this.state.endTime}
-                                                 pickedStartDate={this.state.pickedStartDate}  pickedEndDate={this.state.pickedEndDate} />
-                    </Grid>
-                </Grid>
+                            {/*End Date and Time*/}
+                            <TableRow>
+                            <FormControl className={classes.formControl}>
+                                <TextField
+                                    id="time"
+                                    label="Start Time"
+                                    type="time"
+                                    value={this.state.endTime}
+                                    className={classes.name}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    inputProps={{
+                                        step: 1800, // 5 min
+                                    }}
+
+                                    onChange={this.handleTimeChange('endTime')}
+                                />
+                                {/*</form>*/}
+                            </FormControl>
+
+                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+
+                                <InlineDatePicker
+                                    keyboard
+                                    margin="normal"
+                                    label="End date"
+                                    value={this.state.pickedEndDate}
+                                    onChange={this.handleEndDateChange}
+                                    format="MM/dd/yyyy"
+
+                                    mask={value =>
+                                        // handle clearing outside if value can be changed outside of the component
+                                        value ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/] : []
+                                    }
+                                    disableOpenOnEnter
+                                    animateYearScrolling={false}
+                                />
+
+                            </MuiPickersUtilsProvider>
+                            </TableRow>
+
+
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                className={classes.button}
+                                onClick = {this.handleButtonClick.bind(this)}
+                            >
+                                Reserve
+                            </Button>
+                        </div>
+                    </form>
+                </SmallBlockDiv>
+                <BigBlockDiv>
+                    <ThirtyMinIntervalColumn startTime ={this.state.startTime} endTime = {this.state.endTime}
+                        pickedStartDate={this.state.pickedStartDate}  pickedEndDate={this.state.pickedEndDate}/>
+                </BigBlockDiv>
             </div>
         );
     }
