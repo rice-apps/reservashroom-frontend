@@ -181,7 +181,7 @@ class UserReservationPageInterface extends React.Component {
                                 helperText= "Input the number of people who will attend your event"
                                 // margin="normal"
                                 onChange={this.handleNumPeopleChange}
-                                value = {this.state.eventName}
+                                value = {this.state.numPeople}
                             />
 
                             <TextField
@@ -190,7 +190,7 @@ class UserReservationPageInterface extends React.Component {
                                 className={classes.textField}
                                 helperText= "Input the name of your event"
                                 onChange={this.handleEventNameChange}
-                                value = {this.state.numPeople}
+                                value = {this.state.eventName}
                             />
 
                         </div>
