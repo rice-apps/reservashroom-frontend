@@ -5,7 +5,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 export default class CalendarColTime extends Component {
     render() {
-        const startTimes = Array.from(Array(48).keys());
+        const startTimes = Array.from(Array(34).keys());
         return (
             <Grid container xs = {12} spacing={4} style={{marginTop: '-7px'}}>
                 {startTimes.map((index) => (
@@ -23,13 +23,13 @@ export default class CalendarColTime extends Component {
 
 }
 function indexToTime(index) {
-    var hour = Math.floor(index/2);
+    var hour = Math.floor(index/2) + 9;
     var minute = index%2 * 30;
     minute = minute == 0 ? "00" : "30";
     var time = hour < 12 ? hour + ":" + minute + " AM" : hour - 12 + ":" + minute + " PM";
-    time = time == "0:00 AM" ? "12:00 AM" : time;
-    time = time == "0:30 AM" ? "12:30 AM" : time;
     time = time == "0:00 PM" ? "12:00 PM" : time;
     time = time == "0:30 PM" ? "12:30 PM" : time;
+    time = time == "13:00 PM" ? "1:00 AM" : time;
+    time = time == "13:30 PM" ? "1:30 AM" : time;
     return time
 }

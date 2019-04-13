@@ -8,8 +8,8 @@ import CalendarColTime from './ColumnOfCalendarTimeLabel.js';
 export default class ThirtyMinIntervalColumn extends Component {
 
 render () {
-        const startTimes = Array.from(Array(48).keys());
-        const endTimes = Array.from(Array(48).keys());
+        // const startTimes = Array.from(Array(48).keys());
+        // const endTimes = Array.from(Array(48).keys());
         const days = Array.of("Monday","Tuesday","Wednesday","Thursday", "Friday","Saturday","Sunday");
         return (
             <div>
@@ -45,14 +45,14 @@ render () {
         )
     }
 }
-function indexToTime(index) {
-    var hour = Math.floor(index/2);
-    var minute = index%2 * 30;
-    minute = minute == 0 ? "00" : "30";
-    var time = hour < 12 ? hour + ":" + minute + " AM" : hour - 12 + ":" + minute + " PM";
-    time = time == "0:00 AM" ? "12:00 AM" : time;
-    time = time == "0:30 AM" ? "12:30 AM" : time;
-    time = time == "0:00 PM" ? "12:00 PM" : time;
-    time = time == "0:30 PM" ? "12:30 PM" : time;
-    return time
-}
+// function indexToTime(index) {
+//     var hour = Math.floor(index/2);
+//     var minute = index%2 * 30;
+//     minute = minute == 0 ? "00" : "30";
+//     var time = hour < 12 ? hour + ":" + minute + " AM" : hour - 12 + ":" + minute + " PM";
+//     time = time == "0:00 AM" ? "12:00 AM" : time;
+//     time = time == "0:30 AM" ? "12:30 AM" : time;
+//     time = time == "0:00 PM" ? "12:00 PM" : time;
+//     time = time == "0:30 PM" ? "12:30 PM" : time;
+//     return time
+// }
